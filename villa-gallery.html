@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa Photo Album - Crete GR Travel</title>
+    <!-- Links to your master CSS file for layout parity -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Area (Globally centered across the screen width) -->
+    <header>
+        <h1>Traditional Villa Gallery</h1>
+        <p class="tagline">Take a photographic tour of our premium Amplades accommodations</p>
+    </header>
+
+    <!-- 3-Column Content Layout Wrapper -->
+    <div class="page-layout-wrapper">
+        
+        <!-- Left Side Navigation Sidebar -->
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-link">🏠 Home Page</a> 
+            <a href="sites.html" class="nav-link">📸 Sites</a>
+            <a href="hotels.html" class="nav-link">🏨 Hotels/Villas</a>
+            <a href="index.html#food" class="nav-link">🍽️ Restaurants</a>
+            <a href="index.html#info" class="nav-link">💡 Recommendations</a> 
+            <a href="index.html#about" class="nav-link">📜 About Us</a>
+        </nav>
+
+        <!-- Main Content Area: Grouped Photo Presentation (Center Track) -->
+        <main>
+            
+            <!-- SECTION 1: ONE-BEDROOM VILLA GALLERY (Pictures 1-13) -->
+            <section class="info-section">
+                <h2>🏡 One-Bedroom Villa (Couples Retreat)</h2>
+                <p>Explore the first 13 views highlighting the cozy stone fireplace architecture, intimate private courtyard, and authentic Cretan styling details tailored for couples.</p>
+
+                <div class="image-wrapper"><img src="villa1.jpg" alt="One-Bedroom View 1" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa2.jpg" alt="One-Bedroom View 2" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa3.jpg" alt="One-Bedroom View 3" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa4.jpg" alt="One-Bedroom View 4" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa5.jpg" alt="One-Bedroom View 5" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa6.jpg" alt="One-Bedroom View 6" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa7.jpg" alt="One-Bedroom View 7" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa8.jpg" alt="One-Bedroom View 8" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa9.jpg" alt="One-Bedroom View 9" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa10.jpg" alt="One-Bedroom View 10" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa11.jpg" alt="One-Bedroom View 11" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa12.jpg" alt="One-Bedroom View 12" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa13.jpg" alt="One-Bedroom View 13" class="gallery-image"></div>
+            </section>
+
+            <!-- Spacing cushion separating the two villa types -->
+            <div style="margin-bottom: 50px;"></div>
+
+            <!-- SECTION 2: TWO-BEDROOM VILLA GALLERY (Pictures 14-21) -->
+            <section class="info-section">
+                <h2>🏰 Two-Bedroom Villa (Spacious Family Suite)</h2>
+                <p>Browse through pictures 14 to 21 to view our expanded layout options, secondary bedrooms, private infinity pool decks, and family-style living spaces.</p>
+
+                <div class="image-wrapper"><img src="villa14.jpg" alt="Two-Bedroom View 14" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa15.jpg" alt="Two-Bedroom View 15" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa16.jpg" alt="Two-Bedroom View 16" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa17.jpg" alt="Two-Bedroom View 17" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa18.jpg" alt="Two-Bedroom View 18" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa19.jpg" alt="Two-Bedroom View 19" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa20.jpg" alt="Two-Bedroom View 20" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="villa21.jpg" alt="Two-Bedroom View 21" class="gallery-image"></div>
+            </section>
+
+        </main>
+
+        <!-- Right Side Navigation: Symmetrical Offers Sidebar -->
+        <aside class="right-sidebar">
+            <h3>💲 Offers of the Month</h3>
+            
+            <div class="offer-card">
+                <h4>🌴The Ultimate Greek Experience Deal</h4>
+                <p>Save 10% or more on stays booked by Jan 7!</p>
+                <a href="ambelades-villa.html" class="offer-link">Greek Villa Getaway</a>
+            </div>
+
+            <div class="offer-card">
+                <h4>🚗 Car Rental Deals</h4>
+                <p>Explore Crete freely. Save up to 20% on weekly rentals!</p>
+                <a href="https://kafetzakis.gr" target="_blank" class="sidebar-image-link">
+                    <img src="car-rental.jpg" alt="Car Rental Discount Deal" class="sidebar-deal-image">
+                </a>
+            </div>
+        </aside>
+        
+    </div> <!-- End of Layout Wrapper -->
+
+    <!-- Footer Area (Centered globally across the screen width) -->
+    <footer>
+        <h2>📩 Contact Us</h2>
+        <p>Have questions about booking this promotion? Reach out to our destination experts.</p>
+        <p>
+            <strong>Email:</strong> 
+            <a href="mailto:info@cretegrtravel.com" class="footer-email-link">info@cretegrtravel.com</a> 
+            | <strong>Phone:</strong> +30 210 1234567
+        </p>
+       
+        <p class="copyright">&copy; 2026 Crete GR Travel. All rights reserved.</p>
+    </footer>
+    <!-- NEW: The Pop-Up Light-box Modal Container -->
+    <div id="galleryModal" class="modal-overlay" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalTargetImg" alt="Enlarged View">
+    </div>
+
+    <!-- NEW: Interactive Light-box Image Clicking Controller Script -->
+    <script>
+        // Find all gallery images on the page
+        const images = document.querySelectorAll('.gallery-image');
+        const modal = document.getElementById('galleryModal');
+        const modalImg = document.getElementById('modalTargetImg');
+
+        // Loop through each photo and attach a click event listener
+        images.forEach(img => {
+            img.style.cursor = 'pointer'; // Changes mouse arrow to a pointing finger
+            img.addEventListener('click', function() {
+                modal.style.display = 'flex'; // Reveals the hidden dark overlay layer
+                modalImg.src = this.src; // Grabs the clicked photo's source path
+            });
+        });
+
+        // Function to close the modal when clicking the dark background or X
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Safeguard: Allow the user to close it by hitting the 'Escape' key on their keyboard
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
+

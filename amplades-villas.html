@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amplades Villas Availability - Crete GR Travel</title>
+    <!-- Links to your master CSS file for layout parity -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Area (Globally centered across the screen) -->
+    <header>
+        <h1>Amplades Villas</h1>
+        <p class="tagline">Check live dates and lock in your authentic Cretan retreat</p>
+    </header>
+
+    <!-- 3-Column Content Layout Wrapper -->
+    <div class="page-layout-wrapper">
+        
+        <!-- Left Side Navigation Sidebar -->
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-link">🏠 Home Page</a> 
+            <a href="sites.html" class="nav-link">📸 Sites</a>
+            <a href="hotels.html" class="nav-link">🏨 Hotels/Villas</a>
+            <a href="index.html#food" class="nav-link">🍽️ Restaurants</a>
+            <a href="index.html#info" class="nav-link">💡 Recommendations</a> 
+            <a href="index.html#about" class="nav-link">📜 About Us</a>
+        </nav>
+
+        <!-- Main Content Area: Booking Calendar & Availability Form (Center Track) -->
+        <main>
+            <section class="info-section">
+                <h2>📅 Select Your Stay Dates</h2>
+                <p>Use the calendar selection fields below to plan your trip. Stays between May and September feature our exclusive 10% rate reduction perk!</p>
+                
+                <!-- Availability Selector Form -->
+                <form class="availability-form" id="bookingForm" onsubmit="return false;">
+                    
+                    <!-- Date Inputs Row -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="checkin">🛫 Check-In Date:</label>
+                            <input type="date" id="checkin" name="checkin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkout">🛬 Check-Out Date:</label>
+                            <input type="date" id="checkout" name="checkout" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Villa Selector Row -->
+                    <div class="form-row" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label for="villa-type">🏡 Choose Your Villa:</label>
+                            <select id="villa-type" name="villa_type" required>
+                                <option value="one-bedroom" selected>Amplades One-Bedroom Villa (Max 2 Adults)</option>
+                                <option value="two-bedroom">Amplades Two-Bedroom Villa (Max 2 Adults, 2 Children)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Guest Rows -->
+                    <div class="form-row" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label for="adults">🧑 Adults:</label>
+                            <select id="adults" name="adults">
+                                <option value="1">1 Adult</option>
+                                <option value="2" selected>2 Adults</option>
+                                <option value="3">3 Adults</option>
+                                <option value="4">4 Adults</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="children">🧒 Children:</label>
+                            <select id="children" name="children">
+                                <option value="0" selected>0 Children</option>
+                                <option value="1">1 Child</option>
+                                <option value="2">2 Children</option>
+                                <option value="3">3 Children</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- FIXED BUTTON: Modern ID trigger replaces tricky inline onclick hooks -->
+                    <button type="button" id="verify-availability-btn" class="web-link booking-btn">Verify Date Availability</button>
+                </form>
+
+                <!-- Dynamic Local Results Status Notification Box -->
+                <div id="availability-result" style="display: none; margin-top: 20px; padding: 20px; border-radius: 12px; font-weight: 700; line-height: 1.6;"></div>
+
+                <!-- Internal layout redirect shortcuts -->
+                <p style="margin-top: 20px;">
+                    🖼️ <a href="villa-gallery.html" class="gallery-text-link">Click here to browse the full photo tour of the property</a>
+                </p>
+                <p style="margin-top: 12px;">
+                    🏨 <a href="hotels.html" class="gallery-text-link">Click here to look at other luxury hotel options if dates are full</a>
+                </p>
+            </section>
+
+            <section class="info-section">
+                <h2>📌 Current Season Occupancy Rules</h2>
+                <p>• <strong>One-Bedroom Villa:</strong> Designed as an exclusive couples retreat. Maximum capacity is strictly limited to 2 Adults.</p>
+                <p>• <strong>Two-Bedroom Villa:</strong> Designed as a spacious family suite. Maximum capacity is strictly limited to 2 Adults and 2 Children.</p>
+            </section>
+        </main>
+
+        <!-- Right Side Navigation: Symmetrical Offers Sidebar -->
+        <aside class="right-sidebar">
+            <h3>💲 Offers of the Month</h3>
+            
+            <div class="offer-card">
+                <h4>The Ultimate Greek Experience Deal</h4>
+                <p>Save 10% or more on stays booked by Jan 7!</p>
+                <a href="amplades-villa.html" class="offer-link">Greek Villa Getaway</a>
+            </div>
+
+            <div class="offer-card">
+                <h4>🚗 Car Rental Deals</h4>
+                <p>Explore Crete freely. Save up to 20% on weekly rentals!</p>
+                <!-- FIXED: Restored trailing slash and clean anchor routing link -->
+                <a href="https://kafetzakis.gr" target="_blank" class="sidebar-image-link">
+                    <img src="car-rental.jpg" alt="Car Rental Discount Deal" class="sidebar-deal-image">
+                </a>
+            </div>
+        </aside>
+        
+    </div> <!-- End of Layout Wrapper -->
+
+    <!-- Footer Area -->
+    <footer>
+        <h2>📩 Contact Us</h2>
+        <p>Need direct help securing an unlisted block of dates? Reach out to our assistance team.</p>
+        <p>
+            <strong>Email:</strong> 
+            <a href="mailto:info@cretegrtravel.com" class="footer-email-link">info@cretegrtravel.com</a> 
+            | <strong>Phone:</strong> +30 210 1234567
+        </p>
+        
+        <p class="copyright">&copy; 2026 Crete GR Travel. All rights reserved.</p>
+    </footer>
+
+       <!-- LOCAL INTERACTIVE CHECKER SCRIPT WITH STRICT CAPACITY ERROR TRACKING -->
+    <script>
+        document.getElementById('verify-availability-btn').addEventListener('click'), function() {
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            const villaType = document.getElementById('villa-type').value;
+            const adults = parseInt(document.getElementById('adults').value);
+            const children = parseInt(document.getElementById('children').value);
+            const resultBox = document.getElementById('availability-result');
+
+            // 1. Guardrail Check: Ensure fields aren't blank
+            if (!checkin || !checkout) {
+                alert('⚠️ Please select both a Check-In and Check-Out date before verifying.');
+                return;
+            }
+
+            // 2. Guardrail Check: Ensure check-out isn't before check-in
+            if (new Date(checkin) >= new Date(checkout)) {
+                alert('⚠️ Invalid Dates: Your Check-Out date must be after your Check-In date.');
+                return;
+            }
+
+            resultBox.style.display = 'block';
+
+            // 3. One-Bedroom Occupancy Failure (More than 2 adults)
+            if (villaType === 'one-bedroom' && adults > 2) {
+                resultBox.style.backgroundColor = 'rgba(214, 40, 40, 0.15)';
+                resultBox.style.border = '2px solid #d62828';
+                resultBox.style.color = '#7a0000';
+                resultBox.innerHTML = `
+                    ❌ <strong>Not Available!</strong><br>
+                    The <strong>Amplades One-Bedroom Villa</strong> cannot accommodate ${adults} Adults. The maximum capacity for this villa is strictly limited to 2 Adults total.<br><br>
+                    💡 <em>Recommendation: Please switch your selection to the Two-Bedroom Villa or look at alternative properties using the helper links below.</em>
+                `;
+                return;
+            }
+
+            // 4. Two-Bedroom Occupancy Failure (More than 2 adults OR more than 2 children)
+            if (villaType === 'two-bedroom' && (adults > 2 || children > 2)) {
+                resultBox.style.backgroundColor = 'rgba(214, 40, 40, 0.15)';
+                resultBox.style.border = '2px solid #d62828';
+                resultBox.style.color = '#7a0000';
+                resultBox.innerHTML = `
+                    ❌ <strong>Not Available!</strong><br>
+                    The requested occupancy of ${adults} Adults and ${children} Children exceeds the limits for the <strong>Amplades Two-Bedroom Villa</strong>. This suite has a maximum capacity of 2 Adults and 2 Children.<br><br>
+                    🏨 <em>Recommendation: Click the link below to check other luxury hotels capable of holding larger parties.</em>
+                `;
+                return;
+            }
+
+            // 5. Success Execution: Displays positive confirmation
+            const selectedVillaText = document.getElementById('villa-type').options[document.getElementById('villa-type').selectedIndex].text;
+            
+            resultBox.style.backgroundColor = 'rgba(0, 119, 182, 0.15)';
+            resultBox.style.border = '2px solid #0077b6';
+            resultBox.style.color = '#03045e';
+            
+            resultBox.innerHTML = `
+                ✨ <strong>Dates are Available!</strong><br>
+                Great news! The <strong>${selectedVillaText}</strong> is open for your requested dates from <strong>${checkin}</strong> to <strong>${checkout}</strong>.<br><br>
+                📧 To lock in this rate and finalize your reservation voucher, click our email link in the footer below to message our team directly!
+            `;
+        }
+    </script>
+
+</body>
+</html>
+        

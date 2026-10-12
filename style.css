@@ -1,0 +1,488 @@
+/* Reset and Base Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 
+   1. Hard-lock the body to the height of the screen 
+   and hide global window overflow to completely eliminate screen scrolling.
+*/
+body {
+    background-image: url('ElafonisiBeach.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 100vh; /* Locked exactly to screen height */
+    max-height: 100vh;
+    overflow: hidden; /* Disables outer browser scrollbars */
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0; 
+}
+
+/* Header Elements (Centered globally across the whole page width) */
+header {
+    text-align: center;
+    margin-top: 20px; 
+    margin-bottom: 15px; 
+    border-bottom: 2px solid rgba(0, 119, 182, 0.15);
+    padding-bottom: 15px;
+    width: 100%;
+    padding-left: 20px; 
+    padding-right: 20px;
+    flex-shrink: 0; /* Prevents the header from getting squished */
+}
+
+header h1 {
+    color: #03045e; 
+    font-size: 5rem; 
+    font-weight: 800; 
+    letter-spacing: 2px;
+    text-transform: uppercase; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+    line-height: 1.2; 
+}
+
+.tagline {
+    color: #03045e;
+    font-size: 1.10rem; 
+    margin-top: 8px;   
+    font-weight: 700;   
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+}
+
+/* 
+   2. Three-Column Content Layout Wrapper 
+   Holds Left Sidebar (260px) | Main Content (1fr) | Right Sidebar (260px)
+*/
+.page-layout-wrapper {
+    display: grid;
+    grid-template-columns: 260px 1fr 260px; 
+    gap: 40px; 
+    width: 100%;
+    max-width: 100%; 
+    flex: 1; /* Automatically expands vertically to fill all middle space */
+    overflow: hidden; /* Keeps internal components safely contained */
+}
+
+/* The Left Navigation Sidebar */
+.sidebar-nav {
+    padding: 35px 20px;
+    border-radius: 0 14px 14px 0; /* Rounded right corners, docked flush left */
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+    height: 100%; 
+    
+    /* Transparent gradient backdrop */
+    background: linear-gradient(to right, rgba(0, 17, 204, 0.45), rgba(0, 8, 102, 0.55), rgba(0, 0, 0, 0.65));
+    border: 1px solid rgba(255, 255, 255, 0.25); 
+    border-left: 4px solid #0022ff; /* Signature blue border line */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Navigation Links inside Sidebar */
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, padding-left 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: #0055ff; 
+    padding-left: 20px; /* Slight push forward animation on hover */
+    box-shadow: 0 0 10px rgba(0, 85, 255, 0.5); 
+}
+
+/* 
+   The Right Offers Sidebar 
+   Perfectly matches the gradient background direction of the left sidebar!
+*/
+.right-sidebar {
+    width: 260px;
+    padding: 35px 20px;
+    border-radius: 14px 0 0 14px; /* Rounded left corners, docked flush right */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    overflow-y: auto; /* Allows multiple offer boxes to scroll internally if they overflow */
+    
+    /* Gradient matches left sidebar direction exactly */
+    background: linear-gradient(to left, rgba(0, 17, 204, 0.45), rgba(0, 8, 102, 0.55), rgba(0, 0, 0, 0.65));
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-right: 4px solid #0022ff; /* Symmetrical blue border line on the far right */
+    box-shadow: -8px 8px 32px 0 rgba(0, 0, 0, 0.25);
+    
+    scrollbar-width: none; /* Hides internal scrollbar track for a clean visual look */
+}
+
+/* Header inside the Offers Sidebar */
+.right-sidebar h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+/* Individual Offer Card Containers */
+.offer-card {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.offer-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.offer-card h4 {
+    color: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.offer-card p {
+    color: #dddddd !important; /* Light text visibility over dark panels */
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    font-weight: 700; /* Bold offer description text */
+}
+
+/* Hyperlinks inside Offer boxes */
+.offer-link {
+    color: #00ddff; /* Electric cyan color for clickable text */
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+
+.offer-link:hover {
+    color: #ffffff;
+}
+
+/* 
+   3. Main Content Area (Middle Column)
+   Allows text sections to scroll independently inside their own column area
+*/
+main { 
+    width: 100%;
+    height: 100%; 
+    padding-left: 10px; 
+    padding-right: 10px; 
+    padding-top: 65px; /* FIXED: Standardized cushion padding layout across view tracks */
+    overflow-y: auto;  /* Creates an isolated internal scrollbar if paragraphs are long */
+    
+    scrollbar-width: thin;
+    scrollbar-color: rgba(3, 4, 94, 0.3) transparent;
+}
+
+/* Section Formatting */
+.info-section {
+    margin-bottom: 35px;
+}
+
+.info-section h2 {
+    color: #03045e; 
+    font-size: 2.6rem;
+    margin-bottom: 10px;
+}
+
+/* Custom sizing for the specific photo location subtitles */
+.info-section h3 {
+    color: #03045e;
+    font-size: 1.6rem; 
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.info-section p {
+    color: #800020; /* Rich Burgundy Hex Code */
+    font-size: 1.05rem;
+    font-weight: 700; /* Bold paragraph text */
+    line-height: 1.6; /* Readable line separation spacing */
+}
+
+/* 
+   Image Container Wrapper
+   Shrink-wraps the blurred frame border directly to the left/right size of the photo
+*/
+.image-wrapper {
+    display: inline-block; /* Forces box edges to compress and match the photo width */
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    
+    /* The Balanced Blur Frame */
+    border: 5px solid rgba(55, 55, 255, 0.4); 
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Hovering over the photo container box updates the blurred frame glow style smoothly */
+.image-wrapper:hover {
+    border: 5px solid rgba(255, 255, 255, 0.8); 
+    box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.25), 
+                0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Gallery Image Inner Settings */
+.gallery-image {
+    display: block; /* Strips empty layout padding offsets beneath images */
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 300px; 
+    object-fit: contain; /* Shows your entire, un-cropped photograph perfectly */
+    border-radius: 8px; /* Slightly tighter corner curves to rest cleanly within frame wrapper */
+}
+
+/* Button & Links Layout */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.web-link {
+    display: inline-block;
+    background-color: #0077b6;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.web-link:hover {
+    background-color: #03045e;
+    transform: translateY(-2px);
+}
+
+/* Contact Footer Styling (Centered globally across the whole page width) */
+footer {
+    border-top: -10px solid rgba(0, 119, 182, 0.15); /* FIXED: Restored clean hairline 2px divider */
+    width: 100%;
+    flex-shrink: 0; /* Prevents the window from squeezing the footer height */
+    background: rgba(255, 255, 255, 0.1); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 12px 20px; 
+}
+
+footer h2 {
+    color: #03045e;
+    font-size: 1.1rem; 
+    margin-bottom: 2px; /* FIXED: Reduced from 20px to prevent vertical text expansion glitches */
+}
+
+/* FIXED: Re-anchored the cut-off selector properties securely */
+footer p {
+    color: #2b2d42;
+    margin-bottom: 2px;
+    font-size: 0.85rem;
+    width: 100%;
+    font-weight: 700; /* Keeps footer paragraphs bold */
+}
+
+.copyright {
+    font-size: 0.75rem; 
+    color: #6c757d;
+    margin-top: 4px;
+    text-align: center; 
+}
+
+/* NEW: Unique styling specifically tracking the interactive 13-photo text link */
+.gallery-text-link {
+    color: #0077b6; 
+    text-decoration: underline;
+    font-weight: 800; 
+    font-size: 1.1rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.gallery-text-link:hover {
+    color: #03045e; 
+    transform: translateY(-1px); 
+}
+
+/* NEW: Custom styling for your clickable footer email link */
+.footer-email-link {
+    color: #2b2d42; 
+    text-decoration: none; 
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+
+.footer-email-link:hover {
+    color: #0077b6;
+    text-decoration: underline;
+}
+
+/* NEW: Sidebar Clickable Image Link Container */
+.sidebar-image-link {
+    display: block;
+    margin-top: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidebar-deal-image {
+    display: block;
+    width: 100%;
+    height: 110px; /* Locked height so it fits beautifully on a single screen viewport */
+    object-fit: cover; 
+}
+
+.sidebar-image-link:hover {
+    transform: translateY(-2px);
+    border-color: #00ddff; /* Cyan hover glow */
+    box-shadow: 0 6px 15px rgba(0, 221, 255, 0.3);
+}
+
+/* Availability Calendar Form Styling */
+.availability-form {
+    background: rgba(255, 255, 255, 0.12); /* Semi-transparent glass matching card panels */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    color: #03045e; /* Signature deep navy labels */
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+/* Calendar Date Inputs and Dropdown Menus */
+.form-group input[type="date"],
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 119, 182, 0.3);
+    background: rgba(255, 255, 255, 0.85);
+    color: #2b2d42;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Input Fields Highlight Glow on Cursor Selection click */
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #0077b6;
+    box-shadow: 0 0 8px rgba(0, 119, 182, 0.25);
+}
+
+/* Adjusts submission button width to stay contained */
+.booking-btn {
+    width: auto;
+    margin-top: 25px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+/* Light-box Modal Backdrop Overlay Layout */
+.modal-overlay {
+    display: none; /* Kept completely hidden until an image is clicked */
+    position: fixed;
+    z-index: 9999; /* Forces the box to stack directly on top of headers and sidebars */
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85); /* Deep, cinematic dark backdrop screen curve tint */
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out; /* Changes mouse cursor to a minus sign signaling it can be closed */
+    animation: fadeInModal 0.25s ease-out;
+}
+
+/* Enlarged Photograph Render Dimensions */
+.modal-content {
+    display: block;
+    max-width: 85%;
+    max-height: 80vh;
+    object-fit: contain; /* Keeps your entire uncropped portrait aspect ratios perfect */
+    border-radius: 8px;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    animation: zoomInImg 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* The Floating Close "X" Cross Button Icon */
+.modal-close {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close:hover {
+    color: #00ddff; /* Turns into your signature electric cyan glow on hover */
+    transform: scale(1.1);
+}
+
+/* Smooth Entrance Animation Trajectories */
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomInImg {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}

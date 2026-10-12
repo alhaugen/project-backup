@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa Gina Gallery - Crete GR Travel</title>
+    <!-- Links to your master CSS file for layout parity -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Area (Globally centered across the screen width) -->
+    <header>
+        <h1>Villa Gina Luxury Maisonette Gallery</h1>
+        <p class="tagline">A photographic tour through your next premium Cretan getaway</p>
+    </header>
+
+    <!-- 3-Column Content Layout Wrapper -->
+    <div class="page-layout-wrapper">
+        
+        <!-- Left Side Navigation Sidebar -->
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-link">🏠 Home Page</a> 
+            <a href="sites.html" class="nav-link">📸 Sites</a>
+            <a href="hotels.html" class="nav-link">🏨 Hotels/Villas</a>
+            <a href="index.html#food" class="nav-link">🍽️ Restaurants</a>
+            <a href="index.html#info" class="nav-link">💡 Recommendations</a> 
+            <a href="index.html#about" class="nav-link">📜 About Us</a>
+        </nav>
+
+        <!-- Main Content Area: Scrolling 17-Photo Presentation (Center Track) -->
+        <main>
+            <section class="info-section">
+                <h2>🏡 Two-Bedroom, Two-Bathroom Interior & Exterior Layouts</h2>
+                <p>Browse through all 17 high-resolution views highlighting our open-concept layout, modern dual bathrooms, private veranda decks, and authentic Cretan luxury details.</p>
+
+                <!-- 
+                   Every image is cleanly boxed inside its tight, shrink-wrapped wrapper 
+                   to inherit your customized blue blurred frames and hover zoom scales!
+                -->
+                <div class="image-wrapper"><img src="vg1.jpg" alt="Villa Gina View 1" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg2.jpg" alt="Villa Gina View 2" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg3.jpg" alt="Villa Gina View 3" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg4.jpg" alt="Villa Gina View 4" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg5.jpg" alt="Villa Gina View 5" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg6.jpg" alt="Villa Gina View 6" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg7.jpg" alt="Villa Gina View 7" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg8.jpg" alt="Villa Gina View 8" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg9.jpg" alt="Villa Gina View 9" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg10.jpg" alt="Villa Gina View 10" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg11.jpg" alt="Villa Gina View 11" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg12.jpg" alt="Villa Gina View 12" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg13.jpg" alt="Villa Gina View 13" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg14.jpg" alt="Villa Gina View 14" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg15.jpg" alt="Villa Gina View 15" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg16.jpg" alt="Villa Gina View 16" class="gallery-image"></div>
+                <div class="image-wrapper"><img src="vg17.jpg" alt="Villa Gina View 17" class="gallery-image"></div>
+
+            </section>
+        </main>
+
+        <!-- Right Side Navigation: Symmetrical Offers Sidebar -->
+        <aside class="right-sidebar">
+            <h3>💲 Offers of the Month</h3>
+            
+            <div class="offer-card">
+                <h4>🌴The Ultimate Greek Experience Deal</h4>
+                <p>Save 10% or more on stays booked by Jan 7!</p>
+                <a href="villa-gina.html" class="offer-link">Greek Villa Getaway</a>
+            </div>
+
+            <div class="offer-card">
+                <h4>🚗 Car Rental Deals</h4>
+                <p>Explore Crete freely. Save up to 20% on weekly rentals!</p>
+                <a href="https://kafetzakis.gr" target="_blank" class="sidebar-image-link">
+                    <img src="car-rental.jpg" alt="Car Rental Discount Deal" class="sidebar-deal-image">
+                </a>
+            </div>
+        </aside>
+        
+    </div> <!-- End of Layout Wrapper -->
+
+    <!-- Footer Area (Centered globally across the screen width) -->
+    <footer>
+        <h2>📩 Contact Us</h2>
+        <p>Have questions about booking this promotion? Reach out to our destination experts.</p>
+        <p>
+            <strong>Email:</strong> 
+            <a href="mailto:info@cretegrtravel.com" class="footer-email-link">info@cretegrtravel.com</a> 
+            | <strong>Phone:</strong> +30 210 1234567
+        </p>
+        <p class="copyright">&copy; 2026 Crete GR Travel. All rights reserved.</p>
+    </footer>
+    <!-- NEW: The Pop-Up Light-box Modal Container -->
+    <div id="galleryModal" class="modal-overlay" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalTargetImg" alt="Enlarged View">
+    </div>
+
+    <!-- NEW: Interactive Light-box Image Clicking Controller Script -->
+    <script>
+        // Find all gallery images on the page
+        const images = document.querySelectorAll('.gallery-image');
+        const modal = document.getElementById('galleryModal');
+        const modalImg = document.getElementById('modalTargetImg');
+
+        // Loop through each photo and attach a click event listener
+        images.forEach(img => {
+            img.style.cursor = 'pointer'; // Changes mouse arrow to a pointing finger
+            img.addEventListener('click', function() {
+                modal.style.display = 'flex'; // Reveals the hidden dark overlay layer
+                modalImg.src = this.src; // Grabs the clicked photo's source path
+            });
+        });
+
+        // Function to close the modal when clicking the dark background or X
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Safeguard: Allow the user to close it by hitting the 'Escape' key on their keyboard
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa Gina Availability - Crete GR Travel</title>
+    <!-- Links to your master CSS file for layout parity -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Area (Globally centered across the screen) -->
+    <header>
+        <h1>Villa Gina Luxury Maisonette</h1>
+        <p class="tagline">Check live dates and lock in your two-bedroom, two-bath island retreat</p>
+    </header>
+
+    <!-- 3-Column Content Layout Wrapper -->
+    <div class="page-layout-wrapper">
+        
+        <!-- Left Side Navigation Sidebar -->
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-link">🏠 Home Page</a> 
+            <a href="sites.html" class="nav-link">📸 Sites</a>
+            <a href="hotels.html" class="nav-link">🏨 Hotels/Villas</a>
+            <a href="index.html#food" class="nav-link">🍽️ Restaurants</a>
+            <a href="index.html#info" class="nav-link">💡 Recommendations</a> 
+            <a href="index.html#about" class="nav-link">📜 About Us</a>
+        </nav>
+
+        <!-- Main Content Area: Booking Calendar & Availability Form (Center Track) -->
+        <main>
+            <section class="info-section">
+                <h2>📅 Select Your Stay Dates</h2>
+                <p>Use the calendar selection fields below to plan your trip. Stays between May and September feature our exclusive 10% rate reduction perk!</p>
+                
+                <!-- Availability Selector Form -->
+                <form class="availability-form" id="bookingForm" onsubmit="return false;">
+                    
+                    <!-- Date Inputs Row -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="checkin">🛫 Check-In Date:</label>
+                            <input type="date" id="checkin" name="checkin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkout">🛬 Check-Out Date:</label>
+                            <input type="date" id="checkout" name="checkout" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Villa Selector Row -->
+                    <div class="form-row" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label for="villa-type">🏡 Accommodations:</label>
+                            <select id="villa-type" name="villa_type" required>
+                                <option value="luxury-maisonette" selected>Villa Gina Luxury Maisonette (2 Bed / 2 Bath - Max 4 Guests)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Guest Rows -->
+                    <div class="form-row" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label for="adults">🧑 Adults:</label>
+                            <select id="adults" name="adults">
+                                <option value="1">1 Adult</option>
+                                <option value="2" selected>2 Adults</option>
+                                <option value="3">3 Adults</option>
+                                <option value="4">4 Adults</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="children">🧒 Children:</label>
+                            <select id="children" name="children">
+                                <option value="0" selected>0 Children</option>
+                                <option value="1">1 Child</option>
+                                <option value="2">2 Children</option>
+                                <option value="3">3 Children</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Check Button -->
+                    <button type="button" id="verify-availability-btn" class="web-link booking-btn">Verify Date Availability</button>
+                </form>
+
+                <!-- Dynamic Local Results Status Notification Box -->
+                <div id="availability-result" style="display: none; margin-top: 20px; padding: 20px; border-radius: 12px; font-weight: 700; line-height: 1.6;"></div>
+
+                <!-- Internal layout redirect shortcuts -->
+                <p style="margin-top: 20px;">
+                    🖼️ <!-- FIXED: Pointed cleanly to your brand-new dedicated Villa Gina photo album page -->
+                    <a href="gina-gallery.html" class="gallery-text-link">Click here to browse the full photo tour of the property</a>
+                </p>
+                <p style="margin-top: 12px;">
+                  🏨  <a href="hotels.html" class="gallery-text-link">Click here to look at other luxury hotel options if dates are full</a>
+                </p>
+            </section>
+
+            <section class="info-section">
+                <h2>📌 Current Season Occupancy Rules</h2>
+                <p>• <strong>Villa Gina Occupancy Policy:</strong> To maintain premium hospitality standards, the two-bedroom, two-bathroom luxury maisonette accommodates a strict maximum limit of **4 total individuals** (combined total of adults and children).</p>
+                <p>• <strong>Peak Summer Bookings:</strong> June through August dates fill up fast. We recommend secure holds 4–6 months in advance.</p>
+            </section>
+        </main>
+
+        <!-- Right Side Navigation: Symmetrical Offers Sidebar -->
+        <aside class="right-sidebar">
+            <h3>💲 Offers of the Month</h3>
+            
+            <div class="offer-card">
+                <h4>🌴The Ultimate Greek Experience Deal</h4>
+                <p>Save 10% or more on stays booked by Jan 7!</p>
+                <a href="villa-gina.html" class="offer-link">Greek Villa Getaway</a>
+            </div>
+
+            <div class="offer-card">
+                <h4>🚗 Car Rental Deals</h4>
+                <p>Explore Crete freely. Save up to 20% on weekly rentals!</p>
+                <a href="https://kafetzakis.gr" target="_blank" class="sidebar-image-link">
+                    <img src="car-rental.jpg" alt="Car Rental Discount Deal" class="sidebar-deal-image">
+                </a>
+            </div>
+        </aside>
+        
+    </div> <!-- End of Layout Wrapper -->
+
+    <!-- Footer Area -->
+    <footer>
+        <h2>📩 Contact Us</h2>
+        <p>Need direct help securing an unlisted block of dates? Reach out to our assistance team.</p>
+        <p>
+            <strong>Email:</strong> 
+            <a href="mailto:info@cretegrtravel.com" class="footer-email-link">info@cretegrtravel.com</a> 
+            | <strong>Phone:</strong> +30 210 1234567
+        </p>
+        <p class="copyright">&copy; 2026 Crete GR Travel. All rights reserved.</p>
+    </footer>
+
+    <!-- COMPLETE VALIDATION SCRIPT ENGINE -->
+    <script>
+        document.getElementById('verify-availability-btn').addEventListener('click', function() {
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            const adults = parseInt(document.getElementById('adults').value);
+            const children = parseInt(document.getElementById('children').value);
+            const resultBox = document.getElementById('availability-result');
+
+            // 1. Guardrail Check: Ensure fields aren't blank
+            if (!checkin || !checkout) {
+                alert('⚠️ Please select both a Check-In and Check-Out date before verifying.');
+                return;
+            }
+
+            // 2. Guardrail Check: Ensure check-out isn't before check-in
+            if (new Date(checkin) >= new Date(checkout)) {
+                alert('⚠️ Invalid Dates: Your Check-Out date must be after your Check-In date.');
+                return;
+            }
+
+            resultBox.style.display = 'block';
+
+            // 3. Strict Villa Gina Check: Total individuals (adults + children) cannot exceed 4
+            const totalGuests = adults + children;
+
+            if (totalGuests > 4) {
+                resultBox.style.backgroundColor = 'rgba(214, 40, 40, 0.15)';
+                resultBox.style.border = '2px solid #d62828';
+                resultBox.style.color = '#7a0000';
+                resultBox.innerHTML = `
+                    ❌ <strong>Not Available!</strong><br>
+                    The requested occupancy of ${adults} Adults and ${children} Children (${totalGuests} total individuals) exceeds the parameters for **Villa Gina**. This luxury maisonette accommodates a strict maximum limit of 4 individuals total.<br><br>
+                    🏨 <em>Recommendation: Please lower your guest counts or click the links below to check other hotel suites.</em>
+                `;
+                return;
+            }
+
+            // 4. Success Execution: Displays positive confirmation layout panel
+            resultBox.style.backgroundColor = 'rgba(0, 119, 182, 0.15)';
+            resultBox.style.border = '2px solid #0077b6';
+            resultBox.style.color = '#03045e';
+            
+            resultBox.innerHTML = `
+                ✨ <strong>Dates are Available!</strong><br>
+                Great news! **Villa Gina Luxury Maisonette** is completely open for your requested dates from <strong>${checkin}</strong> to <strong>${checkout}</strong> for your party of ${totalGuests}.<br><br>
+                📧 To lock in this rate and finalize your reservation voucher, click our email link in the footer below to message our team directly!
+            `;
+        });
+    </script>
+
+</body>
+</html>
