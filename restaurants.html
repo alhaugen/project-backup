@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where to Eat - Crete GR Travel</title>
+    <!-- Links to your master CSS file for layout parity -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Tab Switcher Engine (Works seamlessly inside your main scroll track) */
+        .tab-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(0, 119, 182, 0.15);
+            padding-bottom: 10px;
+        }
+        .tab-btn {
+            background-color: rgba(0, 119, 182, 0.1);
+            color: #03045e;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-content {
+            display: none;
+            width: 100%;
+        }
+        
+        /* Area Subheaders */
+        .area-header {
+            color: #0077b6;
+            font-size: 1.8rem;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #0022ff;
+            padding-left: 10px;
+        }
+
+        /* Restaurant Card Grid Elements */
+        .restaurant-card {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 119, 182, 0.1);
+        }
+        .restaurant-media {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .restaurant-img {
+            width: 48%;
+            min-width: 200px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 3px solid rgba(55, 55, 255, 0.2);
+        }
+
+        /* No-Iframe Security Fail-Safe Location Box */
+        .restaurant-location-box {
+            background-color: rgba(0, 119, 182, 0.05);
+            border: 2px solid #0077b6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .restaurant-location-box p {
+            color: #03045e !important;
+            font-size: 0.95rem !important;
+            margin-bottom: 5px !important;
+            font-weight: 700;
+        }
+
+        /* Functional States mapped via CSS fallback tricks */
+        #tab1:checked ~ .tab-buttons label[for="tab1"],
+        #tab2:checked ~ .tab-buttons label[for="tab2"],
+        #tab3:checked ~ .tab-buttons label[for="tab3"] {
+            background-color: #0077b6;
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 119, 182, 0.3);
+        }
+        #tab1:checked ~ #content1,
+        #tab2:checked ~ #content2,
+        #tab3:checked ~ #content3 {
+            display: block;
+        }
+        .tab-radio { display: none; }
+                /* 📸 Pointer cursor and hover transition for images */
+        .restaurant-img {
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .restaurant-img:hover {
+            transform: scale(1.02);
+            border-color: rgba(0, 119, 182, 0.8);
+        }
+
+        /* Lightbox backdrop overlay */
+        .image-lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(3, 4, 94, 0.85); /* Deep blue dimmed background */
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .image-lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox-expanded-img {
+            max-width: 85%;
+            max-height: 80%;
+            border-radius: 12px;
+            border: 5px solid #ffffff;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .image-lightbox-overlay.active .lightbox-expanded-img {
+            transform: scale(1);
+        }
+        .lightbox-close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 800;
+            cursor: pointer;
+            user-select: none;
+        }
+        .lightbox-close-btn:hover {
+            color: #00ddff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Area (Globally centered across the screen) -->
+    <header>
+        <h1>🍽️ Cretan Dining Guide</h1>
+        <p class="tagline">Taste the genuine flavors of Heraklion & Chania</p>
+    </header>
+
+    <!-- 3-Column Content Layout Wrapper -->
+    <div class="page-layout-wrapper">
+        
+        <!-- Left Side Navigation Sidebar -->
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-link">🏠 Home Page</a> 
+            <a href="sites.html" class="nav-link">📸 Sites</a>
+            <a href="hotels.html" class="nav-link">🏨 Hotels/Villas</a>
+            <a href="restaurants.html" class="nav-link">🍽️ Restaurants</a>
+            <a href="recommendations.html" class="nav-link">💡 Recommendations</a> 
+            <a href="aboutus.html" class="nav-link">📜 About Us</a>
+        </nav>
+
+        <!-- Main Content Area: Tabbed Directory (Center Track) -->
+        <main>
+            <div class="tab-container">
+                <!-- Radio Controller Hooks -->
+                <input type="radio" name="restaurant-tabs" id="tab1" class="tab-radio" checked>
+                <input type="radio" name="restaurant-tabs" id="tab2" class="tab-radio">
+                <input type="radio" name="restaurant-tabs" id="tab3" class="tab-radio">
+
+                <!-- Tab Control Buttons Bar -->
+                <div class="tab-buttons">
+                    <label for="tab1" class="tab-btn">🥩 Meat & Seafood</label>
+                    <label for="tab2" class="tab-btn">🌯 Gyro Spots</label>
+                    <label for="tab3" class="tab-btn">🍰 Dessert Places</label>
+                </div>
+
+                <!-- ==================== TAB 1: MEAT & SEAFOOD ==================== -->
+                <div class="tab-content" id="content1">
+                    <div class="area-header">📍 Heraklion Area</div>
+                    
+                    <div class="restaurant-card">
+                        <h3>Peskesi Restaurant</h3>
+                        <p>An award-winning authentic Cretan restaurant serving farm-to-table traditional meats and ancient local recipes inside a beautifully restored historical stone house.</p>
+                        <div class="restaurant-media">
+                            <img src="peskesi1.jpg" alt="Peskesi Dining Area" class="restaurant-img">
+                            <img src="peskesi2.jpg" alt="Peskesi Traditional Dish" class="restaurant-img">
+                        </div>
+                        
+                        <div class="restaurant-location-box">
+                            <p>📍 Address: Kapetan Haralambi 6, Iraklio 712 02, Greece</p>
+                            <p>🚘 Proximity: Located in the center of Heraklion Old Town, right off Lion Square.</p>
+                        </div>
+
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=35.34017, 25.1325" 
+   target="_blank" 
+   class="web-link" 
+   style="background-color: #0077b6; padding: 12px 24px; font-size: 1.05rem;">🗺️ Open Map & Get Directions</a>
+                        </div>
+                    </div>
+
+                    <div class="area-header">📍 Chania Area</div>
+                    <div class="restaurant-card">
+                        <h3>Thalassino Ageri</h3>
+                        <p>A spectacular beachfront tavern located right on the rocky shoreline of Tabakaria, specializing in fresh Mediterranean seafood catches and romantic seaside sunsets.</p>
+                        <div class="restaurant-media">
+                            <img src="seafood-chania1.jpg" alt="Thalassino Ageri Seating" class="restaurant-img">
+                            <img src="seafood-chania2.jpg" alt="Fresh Grilled Catch" class="restaurant-img">
+                        </div>
+
+                        <div class="restaurant-location-box">
+                            <p>📍 Address: Vivilaki 35, Chania 731 33, Greece</p>
+                            <p>🚘 Proximity: Tucked into the historic waterfront district of Tabakaria.</p>
+                        </div>
+
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=35.51833, 24.01485" 
+   target="_blank" 
+   class="web-link" 
+   style="background-color: #0077b6; padding: 12px 24px; font-size: 1.05rem;">🗺️ Open Map & Get Directions</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== TAB 2: GYRO RESTAURANTS ==================== -->
+                <div class="tab-content" id="content2">
+                    <div class="area-header">📍 Heraklion Area</div>
+                    
+                    <div class="restaurant-card">
+                        <h3>Hovoli Gyros</h3>
+                        <p>Famous among locals for serving massive, perfectly spiced pork and chicken gyros wrapped in soft, warm handmade pita with traditional tzatziki.</p>
+                        <div class="restaurant-media">
+                            <img src="gyro-heraklion1.jpg" alt="Hovoli Gyro Wrap" class="restaurant-img">
+                            <img src="gyro-heraklion2.jpg" alt="Carving spit meat" class="restaurant-img">
+                        </div>
+
+                        <div class="restaurant-location-box">
+                            <p>📍 Address: Dedalou 5, Iraklio 712 02, Greece</p>
+                            <p>🚘 Proximity: Located directly on the bustling Dedalou pedestrian walking street.</p>
+                        </div>
+
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=35.325551, 25.277318" 
+   target="_blank" 
+   class="web-link" 
+   style="background-color: #0077b6; padding: 12px 24px; font-size: 1.05rem;">🗺️ Open Map & Get Directions</a>
+                        </div>
+                    </div>
+
+                    <div class="area-header">📍 Chania Area</div>
+                    <div class="restaurant-card">
+                        <h3>Oasis Gyros</h3>
+                        <p>A legendary, tiny hole-in-the-wall spot in Chania center known for serving arguably the finest traditional pork gyros in western Crete since 1967.</p>
+                        <div class="restaurant-media">
+                            <img src="oasis1.jpg" alt="Oasis Street View" class="restaurant-img">
+                            <img src="oasis2.jpg" alt="Oasis Pork Gyro" class="restaurant-img">
+                        </div>
+
+                        <div class="restaurant-location-box">
+                            <p>📍 Address: Voloudakidon 4, Chania 731 34, Greece</p>
+                            <p>🚘 Proximity: Just a short walk from Chania's central Municipal Market square.</p>
+                        </div>
+
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=35.5121, 24.0203" 
+   target="_blank" 
+   class="web-link" 
+   style="background-color: #0077b6; padding: 12px 24px; font-size: 1.05rem;">🗺️ Open Map & Get Directions</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== TAB 3: DESSERT PLACES ==================== -->
+                <div class="tab-content" id="content3">
+                    <div class="area-header">📍 Heraklion Area</div>
+                    
+                    <div class="restaurant-card">
+                        <h3>Kirkor Bougatsa</h3>
+                        <p>Located right in front of the iconic Lions Square fountain, Kirkor has been baking legendary Cretan Bougatsa pastry filled with sweet cream or sour myzithra cheese since 1922.</p>
+                        <div class="restaurant-media">
+                            <img src="kirkor1.jpg" alt="Kirkor Pastry Table" class="restaurant-img">
+                            <img src="kirkor2.jpg" alt="Fresh Bougatsa Powdered Sugar" class="restaurant-img">
+                        </div>
+
+                        <div class="restaurant-location-box">
+                            <p>📍 Address: Eleftheriou Venizelou Square 16, Iraklio 712 02, Greece</p>
+                            <p>🚘 Proximity: Sits directly opposite the historical Morosini Lion Fountain.</p>
+                        </div>
+
+                        <!-- FIXED: Added opening button-group container -->
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=35.3396, 25.1332" 
+   target="_blank" 
+   class="web-link" 
+   style="background-color: #0077b6; padding: 12px 24px; font-size: 1.05rem;">🗺️ Open Map & Get Directions</a>
+                        </div>
+                    </div>
+
+                    <div class="area-header">📍 Chania Area</div>
+                    <div class="restaurant-card">
+                        <h3>Koukouvaya Patisserie</h3>
+                        <p>Perched high on the hills over Chania near the Venizelos Graves, offering panoramic views of the entire harbor alongside their legendary signature rich chocolate cakes.</p>
+                        <div class="restaurant-media">
+                            <img src="koukouvaya1.jpg" alt="Koukouvaya View" class="restaurant-img">
+                            <img src="koukouvaya2.jpg" alt="Zoumero Chocolate Cake" class="restaurant-img">
+                        </div>
+
+                        <div class="restaurant-location-box">
+                            <p>📍 Address: Michail Kalorizikou 7, Chania 731 33, Greece</p>
+                            <p>🚘 Proximity: Located high up on Profitis Ilias hill layout track, overlooking Chania city harbor.</p>
+                        </div>
+
+                        <!-- FIXED: Added opening button-group container -->
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=35.5246, 24.0560" 
+   target="_blank" 
+   class="web-link" 
+   style="background-color: #0077b6; padding: 12px 24px; font-size: 1.05rem;">🗺️ Open Map & Get Directions</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <h3>💲 Offers of the Month</h3>
+            <div class="offer-card">
+                <h4>🌴The Ultimate Greek Experience Deal</h4>
+                <p>Save 10% or more on stays booked by Jan 7!</p>
+                <a href="amplades-villa.html" class="offer-link">Greek Villa Getaway</a>
+            </div>
+            <div class="offer-card">
+                <h4>🚗 Car Rental Deals</h4>
+                <p>Explore Crete freely. Save up to 20% on weekly rentals!</p>
+                <a href="https://kafetzakis.gr" target="_blank" class="sidebar-image-link">
+                    <img src="car-rental.jpg" alt="Car Rental Discount Deal" class="sidebar-deal-image" style="width: 100%; border-radius: 4px; margin-top: 5px;">
+                </a>
+            </div>
+        </aside>
+        
+    </div> <!-- End of Layout Wrapper -->
+
+    <footer>
+        <h2>📩 Contact Us</h2>
+        <p>Looking for a personal restaurant reservation or traditional winery suggestion? Contact our team.</p>
+        <p>
+            <strong>Email:</strong> <a href="mailto:info@cretegrtravel.com" class="footer-email-link">info@cretegrtravel.com</a> | <strong>Phone:</strong> +30 697 8938200
+        </p>
+        <p class="copyright">&copy; 2026 Crete GR Travel. All rights reserved.</p>
+    </footer>
+    <!-- Lightbox Modal Box Markup -->
+    <div class="image-lightbox-overlay" id="lightboxOverlay">
+        <span class="lightbox-close-btn" id="lightboxClose">&times;</span>
+        <img class="lightbox-expanded-img" id="lightboxActiveImg" src="" alt="Popup View Window">
+    </div>
+
+    <!-- Lightbox Functional Controller Script -->
+    <script>
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const lightboxActiveImg = document.getElementById('lightboxActiveImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        // Opens the popup when any restaurant image card is clicked
+        document.querySelectorAll('.restaurant-img').forEach(image => {
+            image.addEventListener('click', () => {
+                lightboxActiveImg.src = image.src;
+                lightboxOverlay.classList.add('active');
+            });
+        });
+
+        // Closes the popup when clicking the (×) close icon button
+        lightboxClose.addEventListener('click', () => {
+            lightboxOverlay.classList.remove('active');
+        });
+
+        // Closes the popup when clicking anywhere outside the photo frame
+        lightboxOverlay.addEventListener('click', (e) => {
+            if (e.target === lightboxOverlay) {
+                lightboxOverlay.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>

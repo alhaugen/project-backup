@@ -24,8 +24,8 @@
             <a href="sites.html" class="nav-link">📸 Sites</a>
             <a href="hotels.html" class="nav-link">🏨 Hotels/Villas</a>
             <a href="index.html#food" class="nav-link">🍽️ Restaurants</a>
-            <a href="index.html#info" class="nav-link">💡 Recommendations</a> 
-            <a href="index.html#about" class="nav-link">📜 About Us</a>
+            <a href="recommendations.html" class="nav-link">💡 Recommendations</a> 
+            <a href="aboutus.html" class="nav-link">📜 About Us</a>
         </nav>
 
         <!-- Main Content Area: Booking Calendar & Availability Form (Center Track) -->
@@ -94,7 +94,7 @@
                     🖼️ <a href="villa-gallery.html" class="gallery-text-link">Click here to browse the full photo tour of the property</a>
                 </p>
                 <p style="margin-top: 12px;">
-                    🏨 <a href="hotels.html" class="gallery-text-link">Click here to look at other luxury hotel options if dates are full</a>
+                    ℹ️ <a href="avinfo.html" class="gallery-text-link">Click here to see all villa info</a>
                 </p>
             </section>
 
@@ -134,7 +134,7 @@
         <p>
             <strong>Email:</strong> 
             <a href="mailto:info@cretegrtravel.com" class="footer-email-link">info@cretegrtravel.com</a> 
-            | <strong>Phone:</strong> +30 210 1234567
+            | <strong>Phone:</strong> +30 697 8938200
         </p>
         
         <p class="copyright">&copy; 2026 Crete GR Travel. All rights reserved.</p>
@@ -142,7 +142,7 @@
 
        <!-- LOCAL INTERACTIVE CHECKER SCRIPT WITH STRICT CAPACITY ERROR TRACKING -->
     <script>
-        document.getElementById('verify-availability-btn').addEventListener('click'), function() {
+        document.getElementById('verify-availability-btn').addEventListener('click', function() {
             const checkin = document.getElementById('checkin').value;
             const checkout = document.getElementById('checkout').value;
             const villaType = document.getElementById('villa-type').value;
@@ -185,7 +185,7 @@
                 resultBox.innerHTML = `
                     ❌ <strong>Not Available!</strong><br>
                     The requested occupancy of ${adults} Adults and ${children} Children exceeds the limits for the <strong>Amplades Two-Bedroom Villa</strong>. This suite has a maximum capacity of 2 Adults and 2 Children.<br><br>
-                    🏨 <em>Recommendation: Click the link below to check other luxury hotels capable of holding larger parties.</em>
+                    🏨 <em>Recommendation: Look at one of the other properties listed that are capable of holding larger parties.</em>
                 `;
                 return;
             }
@@ -202,7 +202,7 @@
                 Great news! The <strong>${selectedVillaText}</strong> is open for your requested dates from <strong>${checkin}</strong> to <strong>${checkout}</strong>.<br><br>
                 📧 To lock in this rate and finalize your reservation voucher, click our email link in the footer below to message our team directly!
             `;
-        }
+        })
     </script>
 
 </body>
