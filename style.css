@@ -486,3 +486,100 @@ footer p {
     from { transform: scale(0.85); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
+/* ==========================================================================
+   MOBILE RESPONSIVE OVERRIDES (For iPhones and Screens Under 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* 1. Unlock the body so users can scroll down on their phones */
+    body {
+        height: auto !important;
+        max-height: none !important;
+        overflow-y: auto !important; /* Restores vertical scrolling */
+    }
+
+    /* 2. Shrink the massive desktop header font so it fits on an iPhone screen */
+    header h1 {
+        font-size: 2.2rem !important; 
+        padding: 0 10px;
+    }
+
+    .tagline {
+        font-size: 0.9rem !important;
+        letter-spacing: 1px !important;
+    }
+
+    /* 3. Convert the 3-column grid into a single vertical column layout */
+    .page-layout-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        overflow: visible !important;
+        gap: 20px !important;
+        padding: 0 15px;
+    }
+
+    /* 4. Transform Left Navigation into a horizontal button row */
+    .sidebar-nav {
+        width: 100% !important;
+        height: auto !important;
+        padding: 15px !important;
+        border-radius: 12px !important; /* Round all sides instead of just right */
+        border-left: none !important;
+        border-top: 4px solid #0022ff !important; /* Flip signature line to top */
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important; /* Wraps links to a new line if they don't fit */
+        justify-content: center !important;
+        gap: 10px !important;
+    }
+
+    .nav-link {
+        font-size: 0.95rem !important;
+        padding: 8px 12px !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    .nav-link:hover {
+        padding-left: 12px !important; /* Disable desktop sliding animation */
+    }
+
+    /* 5. Clean up Main Content scroll settings */
+    main {
+        width: 100% !important;
+        height: auto !important;
+        padding-top: 10px !important; /* Remove giant top cushion padding */
+        overflow-y: visible !important; /* Let body handle main scrolling */
+    }
+
+    .info-section h2 {
+        font-size: 1.8rem !important;
+    }
+
+    /* 6. Fix Right Offers Sidebar layout */
+    .right-sidebar {
+        width: 100% !important;
+        height: auto !important;
+        padding: 20px 15px !important;
+        border-radius: 12px !important;
+        border-right: none !important;
+        border-bottom: 4px solid #0022ff !important; /* Symmetrical accent bottom link */
+        overflow-y: visible !important;
+    }
+
+    /* Ensure offer images and ad banners scale inside cards */
+    .sidebar-deal-image, 
+    .offer-card img {
+        max-width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        margin-top: 10px;
+        border-radius: 6px;
+    }
+
+    /* 7. Center and tighten Footer spacing */
+    footer {
+        padding: 20px 15px !important;
+        margin-top: 20px;
+    }
+}
