@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where to Rent a Car - Crete GR Travel</title>
+    <!-- Links to your master CSS file for layout parity -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Tab Switcher Engine (Works seamlessly inside your main scroll track) */
+        .tab-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(0, 119, 182, 0.15);
+            padding-bottom: 10px;
+        }
+        .tab-btn {
+            background-color: rgba(0, 119, 182, 0.1);
+            color: #03045e;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-content {
+            display: none;
+            width: 100%;
+        }
+        
+        /* Area Subheaders */
+        .area-header {
+            color: #0077b6;
+            font-size: 1.8rem;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #0022ff;
+            padding-left: 10px;
+        }
+
+        /* No-Iframe Security Fail-Safe Location Box */
+        .restaurant-location-box {
+            background-color: rgba(0, 119, 182, 0.05) !important; /* Tinted fill */
+            border: 2px solid #0077b6 !important;                  /* Hard framing line */
+            border-radius: 12px !important;                        /* Rounded corners */
+            padding: 18px !important;                              /* Breathable padding */
+            margin: 20px 0 !important;                             /* Separation margin */
+            box-shadow: inset 0 1px 4px rgba(0, 119, 182, 0.05);   /* Inner shadow depth */
+        }
+        .restaurant-location-box p {
+            color: #03045e !important;                             /* Striking dark navy text */
+            font-size: 0.98rem !important;                         /* Match restaurant scale */
+            margin: 0 0 8px 0 !important;
+            font-weight: 700 !important;                           /* Bold weights pop out */
+            line-height: 1.5 !important;
+        }
+        .restaurant-location-box p:last-child {
+            margin-bottom: 0 !important;
+        }
+
+        /* Functional States mapped via CSS fallback tricks */
+        #tab1:checked ~ .tab-buttons label[for="tab1"],
+        #tab2:checked ~ .tab-buttons label[for="tab2"],
+        #tab3:checked ~ .tab-buttons label[for="tab3"] {
+            background-color: #0077b6;
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 119, 182, 0.3);
+        }
+        #tab1:checked ~ #content1,
+        #tab2:checked ~ #content2,
+        #tab3:checked ~ #content3 {
+            display: block;
+        }
+        .tab-radio { display: none; }
+                /* 📸 Pointer cursor and hover transition for images */
+        
+ /* ================================================================ */
+        /* 🎯 STEP 1: REPLACE THIS EXACT BLOCK IN YOUR RENTALS.HTML FILE   */
+        /* ================================================================= */
+        .rental-card-flex {
+            display: flex;
+            gap: 30px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(29, 53, 87, 0.06), 0 1px 3px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 119, 182, 0.08);
+            align-items: stretch;
+            flex-wrap: wrap;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .rental-card-flex:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(29, 53, 87, 0.12);
+        }
+
+ .rental-info-column {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .rental-media-column {
+            width: 260px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        /* ================================================================= */
+        /* 🎯 STEP 2: PASTE THIS BRAND NEW BADGES BLOCK DIRECTLY UNDERNEATH */
+        /* ================================================================= */
+        .badge-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+        .feature-badge {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background-color: rgba(0, 119, 182, 0.08);
+            color: #0077b6;
+            border: 1px solid rgba(0, 119, 182, 0.12);
+        }
+        .feature-badge.highlight {
+            background-color: rgba(46, 204, 113, 0.12);
+            color: #27ae60;
+            border-color: rgba(46, 204, 113, 0.2);
+        }
+
+        /* ================================================================= */
+        /* 🎯 STEP 3: PASTE THIS BUTTON UPGRADE DIRECTLY BELOW THE BADGES   */
+        /* ================================================================= */
+        .rental-info-column .web-link {
+            background: linear-gradient(135deg, #0077b6 0%, #005f94 100%) !important;
+            border-radius: 10px !important;
+            box-shadow: 0 4px 14px rgba(0, 119, 182, 0.3);
+            transition: transform 0.1s ease, box-shadow 0.2s ease !important;
+        }
+        .rental-info-column .web-link:hover {
+            box-shadow: 0 6px 20px rgba(0, 119, 182, 0.4);
+        }
+        .rental-info-column .web-link:active {
+            transform: scale(0.98);
+        }
+
+        /* ... remaining styles (rental-info-column, rental-media-column, etc.) ... */
+
+        /* Lightbox backdrop overlay */
+        .image-lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(3, 4, 94, 0.85); /* Deep blue dimmed background */
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .image-lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox-expanded-img {
+            max-width: 85%;
+            max-height: 80%;
+            border-radius: 12px;
+            border: 5px solid #ffffff;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .image-lightbox-overlay.active .lightbox-expanded-img {
+            transform: scale(1);
+        }
+        .lightbox-close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 800;
+            cursor: pointer;
+            user-select: none;
+        }
+        .lightbox-close-btn:hover {
+            color: #00ddff;
+        }
+
+    </style>
+</head>
+<body>
+
+       <!-- Header Area (Symmetrically Grid-Balanced for True Center Title) -->
+        <header class="global-site-header">
+            <img src="og-image.png" alt="Crete GR Travel Logo" class="header-logo">
+            
+            <div class="header-text-group">
+                <h1>Crete GR Travel</h1>
+                <p class="tagline">Your Ultimate Guide to Greece's Largest Island</p>
+            </div>
+            
+            <!-- Hidden balancing block that guarantees dead-centering -->
+            <div class="header-spacer"></div>
+        </header>
+
+    <!-- 3-Column Content Layout Wrapper -->
+    <div class="page-layout-wrapper">
+        
+        <!-- Left Side Navigation Sidebar -->
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-link">🏠 Home Page</a> 
+            <a href="sites.html" class="nav-link">📸 Sites</a>
+            <a href="hotels.html" class="nav-link">🏨 Hotels/Villas</a>
+            <a href="restaurants.html" class="nav-link">🍽️ Restaurants</a>
+            <a href="recommendations.html" class="nav-link">💡 Recommendations</a> 
+            <a href="aboutus.html" class="nav-link">📜 About Us</a>
+        </nav>
+<!-- Main Content Area: Tabbed Directory (Center Track) -->
+<main>
+    <div class="tab-container">
+        <!-- Radio Controller Hooks -->
+        <input type="radio" name="fleet-tabs" id="tab1" class="tab-radio" checked>
+        <input type="radio" name="fleet-tabs" id="tab2" class="tab-radio">
+        <input type="radio" name="fleet-tabs" id="tab3" class="tab-radio">
+
+        <!-- ==================== TAB 1: DIRECT TERMINAL PICK-UP ==================== -->
+        <div class="tab-content" id="content1">
+            <div class="area-header" style="color: rgb(32, 32, 226);">🚗 On Site (Airport Locations)</div>
+            
+                        <!-- On-Site 1 (Premium Curved Off-White Layout Card) -->
+            <div class="restaurant-card" style="background: #faf9f6 !important; border-radius: 24px !important; padding: 30px !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 119, 182, 0.1); margin-bottom: 25px;">
+                <h3 style="color: #03045e; font-size: 1.8rem; margin-bottom: 5px;">MCar - Kafetzakis (HER Airport Counter)</h3>
+                
+                <!-- Theme Badge Alignment Layer -->
+                <div class="badge-row" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0;">
+                    <span class="feature-badge" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 20px; background-color: rgba(0, 119, 182, 0.08); color: #0077b6; border: 1px solid rgba(0, 119, 182, 0.12); display: inline-flex; align-items: center;"><span style="margin-right: 5px;">🏛️</span>Trusted Since 1977</span>
+                    <span class="feature-badge highlight" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 20px; background-color: rgba(46, 204, 113, 0.12); color: #27ae60; border: 1px solid rgba(46, 204, 113, 0.2); display: inline-flex; align-items: center;"><span style="margin-right: 5px;">😌</span>No Credit Card Required</span>
+                    <span class="feature-badge" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 20px; background-color: rgba(0, 119, 182, 0.08); color: #0077b6; border: 1px solid rgba(0, 119, 182, 0.12); display: inline-flex; align-items: center;"><span style="margin-right: 5px;">🛋️</span>Full Zero-Excess Insurance</span>
+                </div>
+
+                <p style="color: #800020; font-size: 1.05rem; font-weight: 700; line-height: 1.6; margin-top: 15px;">
+                    A highly professional local provider offering instant handovers with no waiting times. Run directly by Sonja, Yannis, and Michaela, their main office sits physically inside the airport zone right in front of the arrivals hall.
+                </p>
+                
+                <!-- Balanced Horizontal Image Row Track (Smaller & Explicitly Side-by-Side) -->
+                <div class="restaurant-media" style="display: flex; gap: 15px; margin: 15px 0; flex-wrap: nowrap; justify-content: flex-start;">
+                    <img src="kaf1.jpg" alt="MCar Fleet Selection" class="restaurant-img" onclick="openLightbox(this.src)" style="width: 30%; min-width: 120px; height: 170px; object-fit: cover; border-radius: 8px; border: 3px solid rgba(55, 55, 255, 0.2); cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease;">
+                    <img src="kaf2.jpg" alt="Heraklion Airport Handover" class="restaurant-img" onclick="openLightbox(this.src)" style="width: 30%; min-width: 120px; height: 170px; object-fit: cover; border-radius: 8px; border: 3px solid rgba(55, 55, 255, 0.2); cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease;">
+                </div>
+
+                <!-- Hard-Framed Location Anchor Box -->
+                <div class="restaurant-location-box">
+                    <p>📍 Desk Location: Kiosk N. 29, Heraklion International Airport (HER) Terminal</p>
+                    <p>🚘 Proximity: Stationed exactly 30 meters out from the primary arrivals hall exit gate lines.</p>
+                </div>
+
+                <!-- Upgraded Gradient Action Button Link -->
+                <div class="button-group" style="margin-top: 20px;">
+                    <a href="https://kafetzakis.gr" target="_blank" class="web-link" style="display: inline-block; background: linear-gradient(135deg, #0077b6 0%, #005f94 100%) !important; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 10px !important; font-weight: 600; box-shadow: 0 4px 14px rgba(0, 119, 182, 0.3); text-align: center;">🌐 Secure Online Booking</a>
+                </div>
+            </div>
+
+
+                        <!-- On-Site 3 (Premium Curved Off-White Layout Card) -->
+            <div class="restaurant-card" style="background: #faf9f6 !important; border-radius: 24px !important; padding: 30px !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 119, 182, 0.1); margin-bottom: 25px;">
+                <h3 style="color: #03045e; font-size: 1.8rem; margin-bottom: 5px;">EuroDollar Car Rental</h3>
+                
+                <!-- Theme Badge Alignment Layer -->
+                <div class="badge-row" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0;">
+                    <span class="feature-badge" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 20px; background-color: rgba(0, 119, 182, 0.08); color: #0077b6; border: 1px solid rgba(0, 119, 182, 0.12); display: inline-flex; align-items: center;"><span style="margin-right: 5px;">🏛️</span>Modern Fleet</span>
+                    <span class="feature-badge highlight" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 20px; background-color: rgba(46, 204, 113, 0.12); color: #27ae60; border: 1px solid rgba(46, 204, 113, 0.2); display: inline-flex; align-items: center;"><span style="margin-right: 5px;">😌</span>Express Key Collection</span>
+                    <span class="feature-badge" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 20px; background-color: rgba(0, 119, 182, 0.08); color: #0077b6; border: 1px solid rgba(0, 119, 182, 0.12); display: inline-flex; align-items: center;"><span style="margin-right: 5px;">🛋️</span>All-Inclusive Rates</span>
+                </div>
+
+                <p style="color: #800020; font-size: 1.05rem; font-weight: 700; line-height: 1.6; margin-top: 15px;">
+                    Providing seamless airport handovers with modern fleet groups optimized for highway trekking and tight mountain villages. This service delivers dependable transit support directly at your arrival gate with no hidden tracking fees.
+                </p>
+                
+                <!-- Balanced Horizontal Image Row Track (Smaller & Explicitly Side-by-Side) -->
+                <div class="restaurant-media" style="display: flex; gap: 15px; margin: 15px 0; flex-wrap: nowrap; justify-content: flex-start;">
+                    <img src="ed1.jpg" alt="EuroDollar Compact Class" class="restaurant-img" onclick="openLightbox(this.src)" style="width: 30%; min-width: 120px; height: 170px; object-fit: cover; border-radius: 8px; border: 3px solid rgba(55, 55, 255, 0.2); cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease;">
+                    <img src="ed2.jpg" alt="EuroDollar SUV Options" class="restaurant-img" onclick="openLightbox(this.src)" style="width: 30%; min-width: 120px; height: 170px; object-fit: cover; border-radius: 8px; border: 3px solid rgba(55, 55, 255, 0.2); cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease;">
+                </div>
+
+                <!-- Hard-Framed Location Anchor Box -->
+                <div class="restaurant-location-box">
+                    <p>📍 Desk Location: Terminal Arrivals Desk, Heraklion Airport (HER)</p>
+                    <p>🚘 Proximity: Counters are positioned directly adjacent to baggage retrieval line tracks for swift collection.</p>
+                </div>
+
+                <!-- Upgraded Gradient Action Button Link -->
+                <div class="button-group" style="margin-top: 20px;">
+                    <a href="https://rentcars-crete.com/en" target="_blank" class="web-link" style="display: inline-block; background: linear-gradient(135deg, #0077b6 0%, #005f94 100%) !important; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 10px !important; font-weight: 600; box-shadow: 0 4px 14px rgba(0, 119, 182, 0.3); text-align: center;">🌐 Secure Online Booking</a>
+                </div>
+            </div>
+
+
+            <div class="area-header" style="color: rgb(32, 32, 226);">🚗 Off Site Locations</div>
+            
+            <!-- Off-Site 1 -->
+             <div class="restaurant-card" style="background: #faf9f6 !important; border-radius: 24px !important; padding: 30px !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 119, 182, 0.1); margin-bottom: 25px;">
+                <h3 style="color: #03045e; font-size: 1.8rem; margin-bottom: 5px;">Niki Car Rental</h3>
+                
+                <!-- Theme Badge Alignment Layer -->
+                <div class="badge-row" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0;">
+                    <span class="feature-badge" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 20px; background-color: rgba(0, 119, 182, 0.08); color: #0077b6; border: 1px solid rgba(0, 119, 182, 0.12); display: inline-flex; align-items: center;"><span style="margin-right: 5px;">🏛️</span>Modern Fleet</span>
+                    <span class="feature-badge highlight" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 20px; background-color: rgba(46, 204, 113, 0.12); color: #27ae60; border: 1px solid rgba(46, 204, 113, 0.2); display: inline-flex; align-items: center;"><span style="margin-right: 5px;">😌</span>Express Key Collection</span>
+                    <span class="feature-badge" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 20px; background-color: rgba(0, 119, 182, 0.08); color: #0077b6; border: 1px solid rgba(0, 119, 182, 0.12); display: inline-flex; align-items: center;"><span style="margin-right: 5px;">🛋️</span>All-Inclusive Rates</span>
+                </div>
+
+                <p style="color: #800020; font-size: 1.05rem; font-weight: 700; line-height: 1.6; margin-top: 15px;">
+                    A highly rated off-site provider utilizing a 20-meter meet-and-greet delivery setup at the arrivals gate. Their physical local headquarters operates right outside the central airport runway boundaries.
+                </p>
+                
+                <!-- Balanced Horizontal Image Row Track (Smaller & Explicitly Side-by-Side) -->
+                <div class="restaurant-media" style="display: flex; gap: 15px; margin: 15px 0; flex-wrap: nowrap; justify-content: flex-start;">
+                    <img src="nc1.jpg" alt="Niki Compact Class" class="restaurant-img" onclick="openLightbox(this.src)" style="width: 30%; min-width: 120px; height: 170px; object-fit: cover; border-radius: 8px; border: 3px solid rgba(55, 55, 255, 0.2); cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease;">
+                    <img src="nc2.jpg" alt="Niki SUV Options" class="restaurant-img" onclick="openLightbox(this.src)" style="width: 30%; min-width: 120px; height: 170px; object-fit: cover; border-radius: 8px; border: 3px solid rgba(55, 55, 255, 0.2); cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease;">
+                </div>
+
+                <!-- Hard-Framed Location Anchor Box -->
+                <div class="rental-location-box">
+                    <p>📍 Office Location: Papagiamali 1 & Leof. Kalokerinou 60, Heraklion</p>
+                    <p>🚘 Proximity: Meet-and-greet service tracks incoming flights to ensure vehicles are waiting 20 meters from the arrivals gate.</p>
+                </div>
+
+
+                <!-- Upgraded Gradient Action Button Link -->
+                <div class="button-group" style="margin-top: 20px;">
+                    <a href="https://rentcars-crete.com/en" target="_blank" class="web-link" style="display: inline-block; background: linear-gradient(135deg, #0077b6 0%, #005f94 100%) !important; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 10px !important; font-weight: 600; box-shadow: 0 4px 14px rgba(0, 119, 182, 0.3); text-align: center;">🌐 Secure Online Booking</a>
+                </div>
+            </div>
+
+            <!-- Off-Site 2 -->
+             <div class="restaurant-card" style="background: #faf9f6 !important; border-radius: 24px !important; padding: 30px !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 119, 182, 0.1); margin-bottom: 25px;">
+                <h3 style="color: #03045e; font-size: 1.8rem; margin-bottom: 5px;">AutoTrip Crete</h3>
+                
+                <!-- Theme Badge Alignment Layer -->
+                <div class="badge-row" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0;">
+                    <span class="feature-badge" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 20px; background-color: rgba(0, 119, 182, 0.08); color: #0077b6; border: 1px solid rgba(0, 119, 182, 0.12); display: inline-flex; align-items: center;"><span style="margin-right: 5px;">🏛️</span>Modern Fleet</span>
+                    <span class="feature-badge highlight" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 20px; background-color: rgba(46, 204, 113, 0.12); color: #27ae60; border: 1px solid rgba(46, 204, 113, 0.2); display: inline-flex; align-items: center;"><span style="margin-right: 5px;">😌</span>Express Key Collection</span>
+                    <span class="feature-badge" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 20px; background-color: rgba(0, 119, 182, 0.08); color: #0077b6; border: 1px solid rgba(0, 119, 182, 0.12); display: inline-flex; align-items: center;"><span style="margin-right: 5px;">🛋️</span>All-Inclusive Rates</span>
+                </div>
+
+                <p style="color: #800020; font-size: 1.05rem; font-weight: 700; line-height: 1.6; margin-top: 15px;">
+                    Family-owned provider tracking flight arrivals to bypass airport desk queues entirely. Keys and documentation are handed over directly at their private parking stalls situated just outside the exit doors.
+                </p>
+                
+                <!-- Balanced Horizontal Image Row Track (Smaller & Explicitly Side-by-Side) -->
+                <div class="restaurant-media" style="display: flex; gap: 15px; margin: 15px 0; flex-wrap: nowrap; justify-content: flex-start;">
+                    <img src="at1.jpg" alt="AutoTrip Compact Class" class="restaurant-img" onclick="openLightbox(this.src)" style="width: 30%; min-width: 120px; height: 170px; object-fit: cover; border-radius: 8px; border: 3px solid rgba(55, 55, 255, 0.2); cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease;">
+                    <img src="at2.jpg" alt="AutoTrip SUV Options" class="restaurant-img" onclick="openLightbox(this.src)" style="width: 30%; min-width: 120px; height: 170px; object-fit: cover; border-radius: 8px; border: 3px solid rgba(55, 55, 255, 0.2); cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease;">
+                </div>
+
+                <!-- Hard-Framed Location Anchor Box -->
+                <div class="rental-location-box">
+                    <p>📍 Office Location: 3 Epimenidou Str, Heraklion Center (Opposite Terminal Parking)</p>
+                    <p>🚘 Proximity: Vehicles are waiting in private parking spaces 20 meters from the arrivals exit gate.</p>
+
+                </div>
+
+
+                <!-- Upgraded Gradient Action Button Link -->
+                <div class="button-group" style="margin-top: 20px;">
+                    <a href="https://autotrip.gr" target="_blank" class="web-link" style="display: inline-block; background: linear-gradient(135deg, #0077b6 0%, #005f94 100%) !important; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 10px !important; font-weight: 600; box-shadow: 0 4px 14px rgba(0, 119, 182, 0.3); text-align: center;">🌐 Secure Online Booking</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 2: NO CREDIT CARD NEEDED ==================== -->
+        <div class="tab-content" id="content2">
+            <div class="area-header">🏢 On Site (Airport Locations)</div>
+            
+            <!-- On-Site 3 -->
+            <div class="rental-card">
+                <h3>Rental Center Crete (No-Hold Booking Base)</h3>
+                <p>Operating since 1975 right out of primary airport zones, specializing in premium all-risk insurance coverage. They require zero cash deposits or credit card hold freezes upon vehicle arrival.</p>
+                <div class="rental-media">
+                    <img src="rcc-logo-spot.jpg" alt="Rental Center Fleet" class="fleet-img">
+                    <img src="rcc-compact.jpg" alt="All-inclusive economy fleet option" class="fleet-img">
+                </div>
+                <div class="rental-location-box">
+                    <p>📍 Desk Location: Nidas 1, Heraklion, Crete, 71307, Greece</p>
+                    <p>🚘 Proximity: Immediate terminal collections with cash, debit card, or credit card options accepted at pickup.</p>
+                </div>
+                <div class="button-group">
+                    <a href="https://rental-center-crete.com" target="_blank" class="web-link" style="background-color: #0077b6; padding: 12px 24px; font-size: 1.05rem; display: inline-block; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold;">🌐 Secure Online Booking</a>
+                </div>
+            </div>
+
+            <div class="area-header">🏡 Off Site Locations</div>
+            
+            <!-- Off-Site 1 Repeat (with Tab 2 context) -->
+            <div class="rental-card">
+                <h3>Niki Cars (No-Deposit Policy)</h3>
+                <p>Highly flexible local family agency celebrated for straightforward conditions, zero credit card restrictions, and cash-on-arrival payment flexibility.</p>
+                <div class="rental-media">
+                    <img src="niki-compact.jpg" alt="Niki Fleet Car" class="fleet-img">
+                    <img src="niki-hq.jpg" alt="Niki Cars Local Office" class="fleet-img">
+                </div>
+                <div class="rental-location-box">
+                    <p>📍 Office Location: Papagiamali 1 & Leof. Kalokerinou 60, Heraklion</p>
+                    <p>🚘 Payment Rule: Pay safely on arrival with cash or debit cards without unexpected hold fees.</p>
+                </div>
+                <div class="button-group">
+                    <a href="https://nikicars.gr" target="_blank" class="web-link" style="background-color: #0077b6; padding: 12px 24px; font-size: 1.05rem; display: inline-block; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold;">🌐 Secure Online Booking</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 3: LUXURY & SUVS ==================== -->
+        <div class="tab-content" id="content3">
+            <div class="area-header">🏢 On Site (Airport Locations)</div>
+            
+            <!-- On-Site 1 Repeat (with Tab 3 context) -->
+            <div class="rental-card">
+                <h3>MCar - Kafetzakis (Premium SUV Fleet)</h3>
+                <p>Features an impressive selection of rugged family crossovers and compact SUVs on-site, perfect for extra luggage capacity and road trip comfort.</p>
+                <div class="rental-media">
+                    <img src="mcar-suv.jpg" alt="MCar SUV Lineup" class="fleet-img">
+                    <img src="mcar-premium.jpg" alt="MCar Premium Options" class="fleet-img">
+                </div>
+                <div class="rental-location-box">
+                    <p>📍 Desk Location: Kiosk N. 29, Heraklion International Airport (HER) Terminal</p>
+                    <p>🚘 Advantage: Fully comprehensive premium insurance options automatically cover tires, glass, and undercarriages.</p>
+                </div>
+                <div class="button-group">
+                    <a href="https://kafetzakis.gr" target="_blank" class="web-link" style="background-color: #0077b6; padding: 12px 24px; font-size: 1.05rem; display: inline-block; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold;">🌐 Secure Online Booking</a>
+                </div>
+            </div>
+
+            <div class="area-header">🏡 Off Site Locations</div>
+            
+            <!-- Off-Site 2 Repeat (with Tab 3 context) -->
+            <div class="rental-card">
+                <h3>AutoTrip (Premium SUV & Cabriolet Fleet)</h3>
+                <p>Providing pristine high-ground-clearance crossovers, premium 4x4 options for mountain routes, and sleek convertibles perfect for coastal drives along the scenic Cretan horizons.</p>
+                <div class="rental-media">
+                    <img src="autotrip-suv.jpg" alt="Premium 4x4 Fleet" class="fleet-img">
+                    <img src="autotrip-cabrio.jpg" alt="Convertible Lineup" class="fleet-img">
+                </div>
+                <div class="rental-location-box">
+                    <p>📍 Office Location: 3 Epimenidou Str, Heraklion Center</p>
+                    <p>🚘 Advantage: Fully comprehensive premium protection tiers tailored specifically to remote inland paths.</p>
+                </div>
+                <div class="button-group">
+                    <a href="https://autotrip.gr" target="_blank" class="web-link" style="background-color: #0077b6; padding: 12px 24px; font-size: 1.05rem; display: inline-block; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold;">🌐 Secure Online Booking</a>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End of tab-container -->
+</main>
+<aside class="right-sidebar">
+            <h3>💲 Offers of the Month</h3>
+            <div class="offer-card">
+                <h4>🌴The Ultimate Greek Experience Deal</h4>
+                <p>Save 10% or more on stays booked by Jan 7!</p>
+                <a href="amplades-villa.html" class="offer-link">Greek Villa Getaway</a>
+            </div>
+            <div class="offer-card">
+                <h4>🚗 Car Rental Deals</h4>
+                <p>Explore Crete freely. Save up to 20% on weekly rentals!</p>
+                <a href="https://kafetzakis.gr" target="_blank" class="sidebar-image-link">
+                    <img src="car-rental.jpg" alt="Car Rental Discount Deal" class="sidebar-deal-image" style="width: 100%; border-radius: 4px; margin-top: 5px;">
+                </a>
+            </div>
+        </aside>
+        </div> <!-- End of Layout Wrapper -->
+
+    <footer>
+        <h2>📩 Contact Us</h2>
+        <p>Looking for a personal restaurant reservation or traditional winery suggestion? Contact our team.</p>
+        <p>
+            <strong>Email:</strong> <a href="mailto:info@cretegrtravel.com" class="footer-email-link">info@cretegrtravel.com</a> | <strong>Phone:</strong> +30 697 8938200
+        </p>
+        <p class="copyright">&copy; 2026 Crete GR Travel. All rights reserved.</p>
+    </footer>
+    <!-- Lightbox Modal Box Markup -->
+    <div class="image-lightbox-overlay" id="lightboxOverlay">
+        <span class="lightbox-close-btn" id="lightboxClose">&times;</span>
+        <img class="lightbox-expanded-img" id="lightboxActiveImg" src="" alt="Popup View Window">
+    </div>
+
+    <!-- Lightbox Functional Controller Script -->
+    <script>
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const lightboxActiveImg = document.getElementById('lightboxActiveImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        // Opens the popup when any restaurant image card is clicked
+        document.querySelectorAll('.restaurant-img').forEach(image => {
+            image.addEventListener('click', () => {
+                lightboxActiveImg.src = image.src;
+                lightboxOverlay.classList.add('active');
+            });
+        });
+
+        // Closes the popup when clicking the (×) close icon button
+        lightboxClose.addEventListener('click', () => {
+            lightboxOverlay.classList.remove('active');
+        });
+
+        // Closes the popup when clicking anywhere outside the photo frame
+        lightboxOverlay.addEventListener('click', (e) => {
+            if (e.target === lightboxOverlay) {
+                lightboxOverlay.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>

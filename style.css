@@ -25,33 +25,61 @@ body {
     padding: 0; 
 }
 
-/* Header Elements (Centered globally across the whole page width) */
-header {
-    text-align: center;
-    margin-top: 20px; 
-    margin-bottom: 15px; 
-    border-bottom: 2px solid rgba(0, 119, 182, 0.15);
-    padding-bottom: 15px;
+/* Header Elements (Symmetrically Balanced Layout Rules) */
+.global-site-header {
     width: 100%;
-    padding-left: 20px; 
-    padding-right: 20px;
-    flex-shrink: 0; /* Prevents the header from getting squished */
+    margin-top: 0px; 
+    margin-bottom: 5px; 
+    border-bottom: 2px solid rgba(0, 119, 182, 0.15);
+    padding-top: 0px;
+    padding-bottom: 10px; 
+    padding-left: 40px; 
+    padding-right: 40px;
+    flex-shrink: 0; 
+    
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
 }
 
-header h1 {
+/* FORCES your layout logo asset to scale up large without collapsing */
+.header-logo {
+    width: 320px !important;       /* Scales your asset up noticeably large */
+    height: 220px !important;
+    min-width: 320px !important;   /* Prevents flexbox rows from shrinking it down */
+    flex-shrink: 0 !important;
+    object-fit: contain;
+    /* Removed background-color, padding, border-radius, and borders */
+}
+
+/* Hidden container on the right matching the logo width exactly to force true centering */
+.header-spacer {
+    width: 320px !important;       /* MUST match your new 320px logo size exactly */
+    height: 220px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Centers text across 100% of the remaining middle space */
+.header-text-group {
+    flex: 1;
+    text-align: center;
+}
+
+.global-site-header h1 {
     color: #03045e; 
-    font-size: 5rem; 
+    font-size: 4.5rem; 
     font-weight: 800; 
     letter-spacing: 2px;
     text-transform: uppercase; 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
-    line-height: 1.2; 
+    line-height: .9; 
+    margin: 0;
 }
 
-.tagline {
+.global-site-header .tagline {
     color: #03045e;
     font-size: 1.10rem; 
-    margin-top: 8px;   
+    margin-top: 6px;   
     font-weight: 700;   
     letter-spacing: 2px; 
     text-transform: uppercase; 
@@ -68,6 +96,7 @@ header h1 {
     width: 100%;
     max-width: 100%; 
     flex: 1; /* Automatically expands vertically to fill all middle space */
+    min-height: 0; /* Allows child items to accurately calculate screen bounds */
     overflow: hidden; /* Keeps internal components safely contained */
 }
 
@@ -78,7 +107,7 @@ header h1 {
     display: flex;
     flex-direction: column;
     gap: 16px; 
-    height: 100%; 
+    height: 100%; /* Fill grid row container cleanly */
     
     /* Transparent gradient backdrop */
     background: linear-gradient(to right, rgba(0, 17, 204, 0.45), rgba(0, 8, 102, 0.55), rgba(0, 0, 0, 0.65));
@@ -115,7 +144,7 @@ header h1 {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    height: 100%;
+    height: 100%; 
     overflow-y: auto; /* Allows multiple offer boxes to scroll internally if they overflow */
     
     /* Gradient matches left sidebar direction exactly */
@@ -142,7 +171,7 @@ header h1 {
 /* Individual Offer Card Containers */
 .offer-card {
     background: rgba(255, 255, 255, 0.12);
-    padding: 15px;
+    padding: 15px; 
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.2s ease, background-color 0.2s ease;
@@ -189,7 +218,7 @@ main {
     height: 100%; 
     padding-left: 10px; 
     padding-right: 10px; 
-    padding-top: 65px; /* FIXED: Standardized cushion padding layout across view tracks */
+    padding-top: 20px; /* Reduced top cushion padding so elements flow correctly */
     overflow-y: auto;  /* Creates an isolated internal scrollbar if paragraphs are long */
     
     scrollbar-width: thin;
@@ -198,21 +227,21 @@ main {
 
 /* Section Formatting */
 .info-section {
-    margin-bottom: 35px;
+    margin-bottom: 50px;
 }
 
 .info-section h2 {
     color: #03045e; 
-    font-size: 2.6rem;
-    margin-bottom: 10px;
+    font-size: 2.0rem;
+    margin-bottom: 5px;
 }
 
 /* Custom sizing for the specific photo location subtitles */
 .info-section h3 {
     color: #03045e;
-    font-size: 1.6rem; 
+    font-size: 1.2rem; 
     font-weight: 700;
-    margin-top: 15px;
+    margin-top: 5px;
     margin-bottom: 5px;
 }
 
@@ -281,305 +310,45 @@ main {
     transform: translateY(-2px);
 }
 
-/* Contact Footer Styling (Centered globally across the whole page width) */
+/* Contact Footer Styling (Brought perfectly onto the layout screen view) */
 footer {
-    border-top: -10px solid rgba(0, 119, 182, 0.15); /* FIXED: Restored clean hairline 2px divider */
+    border-top: 2px solid rgba(0, 119, 182, 0.15); 
     width: 100%;
-    flex-shrink: 0; /* Prevents the window from squeezing the footer height */
+    flex-shrink: 0; /* Restricts window metrics from flattening footer block */
     background: rgba(255, 255, 255, 0.1); 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 12px 20px; 
+    padding: 15px 20px; 
 }
 
 footer h2 {
     color: #03045e;
-    font-size: 1.1rem; 
-    margin-bottom: 2px; /* FIXED: Reduced from 20px to prevent vertical text expansion glitches */
-}
-
-/* FIXED: Re-anchored the cut-off selector properties securely */
-footer p {
-    color: #2b2d42;
-    margin-bottom: 2px;
-    font-size: 0.85rem;
-    width: 100%;
-    font-weight: 700; /* Keeps footer paragraphs bold */
-}
-
-.copyright {
-    font-size: 0.75rem; 
-    color: #6c757d;
-    margin-top: 4px;
-    text-align: center; 
-}
-
-/* NEW: Unique styling specifically tracking the interactive 13-photo text link */
-.gallery-text-link {
-    color: #0077b6; 
-    text-decoration: underline;
-    font-weight: 800; 
     font-size: 1.1rem;
-    transition: color 0.2s ease, transform 0.2s ease;
-    display: inline-block;
+    margin-bottom: 4px;
 }
 
-.gallery-text-link:hover {
-    color: #03045e; 
-    transform: translateY(-1px); 
+footer p {
+    color: #03045e;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
 }
 
-/* NEW: Custom styling for your clickable footer email link */
-.footer-email-link {
-    color: #2b2d42; 
-    text-decoration: none; 
-    font-weight: 700;
-    transition: color 0.2s ease;
-}
-
-.footer-email-link:hover {
+footer a {
     color: #0077b6;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+footer a:hover {
     text-decoration: underline;
 }
 
-/* NEW: Sidebar Clickable Image Link Container */
-.sidebar-image-link {
-    display: block;
-    margin-top: 10px;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.sidebar-deal-image {
-    display: block;
-    width: 100%;
-    height: 110px; /* Locked height so it fits beautifully on a single screen viewport */
-    object-fit: cover; 
-}
-
-.sidebar-image-link:hover {
-    transform: translateY(-2px);
-    border-color: #00ddff; /* Cyan hover glow */
-    box-shadow: 0 6px 15px rgba(0, 221, 255, 0.3);
-}
-
-/* Availability Calendar Form Styling */
-.availability-form {
-    background: rgba(255, 255, 255, 0.12); /* Semi-transparent glass matching card panels */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    padding: 25px;
-    margin-top: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.form-row {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.form-group {
-    flex: 1;
-    min-width: 180px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.form-group label {
-    color: #03045e; /* Signature deep navy labels */
-    font-size: 0.95rem;
-    font-weight: 700;
-}
-
-/* Calendar Date Inputs and Dropdown Menus */
-.form-group input[type="date"],
-.form-group select {
-    width: 100%;
-    padding: 10px 12px;
-    border-radius: 8px;
-    border: 1px solid rgba(0, 119, 182, 0.3);
-    background: rgba(255, 255, 255, 0.85);
-    color: #2b2d42;
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: inherit;
-    outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* Input Fields Highlight Glow on Cursor Selection click */
-.form-group input:focus,
-.form-group select:focus {
-    border-color: #0077b6;
-    box-shadow: 0 0 8px rgba(0, 119, 182, 0.25);
-}
-
-/* Adjusts submission button width to stay contained */
-.booking-btn {
-    width: auto;
-    margin-top: 25px;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-}
-/* Light-box Modal Backdrop Overlay Layout */
-.modal-overlay {
-    display: none; /* Kept completely hidden until an image is clicked */
-    position: fixed;
-    z-index: 9999; /* Forces the box to stack directly on top of headers and sidebars */
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.85); /* Deep, cinematic dark backdrop screen curve tint */
-    justify-content: center;
-    align-items: center;
-    cursor: zoom-out; /* Changes mouse cursor to a minus sign signaling it can be closed */
-    animation: fadeInModal 0.25s ease-out;
-}
-
-/* Enlarged Photograph Render Dimensions */
-.modal-content {
-    display: block;
-    max-width: 85%;
-    max-height: 80vh;
-    object-fit: contain; /* Keeps your entire uncropped portrait aspect ratios perfect */
-    border-radius: 8px;
-    border: 3px solid rgba(255, 255, 255, 0.9);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-    animation: zoomInImg 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* The Floating Close "X" Cross Button Icon */
-.modal-close {
-    position: absolute;
-    top: 25px;
-    right: 35px;
-    color: #ffffff;
-    font-size: 3rem;
-    font-weight: 300;
-    cursor: pointer;
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.modal-close:hover {
-    color: #00ddff; /* Turns into your signature electric cyan glow on hover */
-    transform: scale(1.1);
-}
-
-/* Smooth Entrance Animation Trajectories */
-@keyframes fadeInModal {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes zoomInImg {
-    from { transform: scale(0.85); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-/* ==========================================================================
-   MOBILE RESPONSIVE OVERRIDES (For iPhones and Screens Under 768px)
-   ========================================================================== */
-@media (max-width: 768px) {
-    
-    /* 1. Unlock the body so users can scroll down on their phones */
-    body {
-        height: auto !important;
-        max-height: none !important;
-        overflow-y: auto !important; /* Restores vertical scrolling */
-    }
-
-    /* 2. Shrink the massive desktop header font so it fits on an iPhone screen */
-    header h1 {
-        font-size: 2.2rem !important; 
-        padding: 0 10px;
-    }
-
-    .tagline {
-        font-size: 0.9rem !important;
-        letter-spacing: 1px !important;
-    }
-
-    /* 3. Convert the 3-column grid into a single vertical column layout */
-    .page-layout-wrapper {
-        display: flex !important;
-        flex-direction: column !important;
-        height: auto !important;
-        overflow: visible !important;
-        gap: 20px !important;
-        padding: 0 15px;
-    }
-
-    /* 4. Transform Left Navigation into a horizontal button row */
-    .sidebar-nav {
-        width: 100% !important;
-        height: auto !important;
-        padding: 15px !important;
-        border-radius: 12px !important; /* Round all sides instead of just right */
-        border-left: none !important;
-        border-top: 4px solid #0022ff !important; /* Flip signature line to top */
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important; /* Wraps links to a new line if they don't fit */
-        justify-content: center !important;
-        gap: 10px !important;
-    }
-
-    .nav-link {
-        font-size: 0.95rem !important;
-        padding: 8px 12px !important;
-        background-color: rgba(255, 255, 255, 0.1) !important;
-    }
-    
-    .nav-link:hover {
-        padding-left: 12px !important; /* Disable desktop sliding animation */
-    }
-
-    /* 5. Clean up Main Content scroll settings */
-    main {
-        width: 100% !important;
-        height: auto !important;
-        padding-top: 10px !important; /* Remove giant top cushion padding */
-        overflow-y: visible !important; /* Let body handle main scrolling */
-    }
-
-    .info-section h2 {
-        font-size: 1.8rem !important;
-    }
-
-    /* 6. Fix Right Offers Sidebar layout */
-    .right-sidebar {
-        width: 100% !important;
-        height: auto !important;
-        padding: 20px 15px !important;
-        border-radius: 12px !important;
-        border-right: none !important;
-        border-bottom: 4px solid #0022ff !important; /* Symmetrical accent bottom link */
-        overflow-y: visible !important;
-    }
-
-    /* Ensure offer images and ad banners scale inside cards */
-    .sidebar-deal-image, 
-    .offer-card img {
-        max-width: 100% !important;
-        height: auto !important;
-        display: block !important;
-        margin-top: 10px;
-        border-radius: 6px;
-    }
-
-    /* 7. Center and tighten Footer spacing */
-    footer {
-        padding: 20px 15px !important;
-        margin-top: 20px;
-    }
+footer .copyright {
+    font-size: 0.85rem;
+    color: #555555;
+    margin-top: 2px;
 }
