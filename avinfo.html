@@ -9,11 +9,18 @@
 </head>
 <body>
 
-    <!-- Header Area (Globally centered across the screen) -->
-    <header>
-        <h1>ℹ️ Amplades Villas Property Guide</h1>
-        <p class="tagline">Explore layouts, amenities, and capacity rules for your authentic Cretan retreat</p>
-    </header>
+        <!-- Header Area (Symmetrically Grid-Balanced for True Center Title) -->
+        <header class="global-site-header">
+            <img src="og-image.png" alt="Crete GR Travel Logo" class="header-logo">
+            
+            <div class="header-text-group">
+                <h1>Crete GR Travel</h1>
+                <p class="tagline">Your Ultimate Guide to Greece's Largest Island</p>
+            </div>
+            
+            <!-- Hidden balancing block that guarantees dead-centering -->
+            <div class="header-spacer"></div>
+        </header>
 
     <!-- 3-Column Content Layout Wrapper -->
     <div class="page-layout-wrapper">
@@ -50,7 +57,7 @@
                     <li><strong>Outdoor Space:</strong> Private sun-drenched terrace facing local flora.</li>
                 </ul>
                 <div class="button-group" style="margin-top: 15px;">
-                    <a href="amplades-villa.html" class="web-link">Check Available Dates</a>
+                    <a href="amplades-villas.html" class="web-link">Check Available Dates</a>
                 </div>
             </section>
 
@@ -67,7 +74,7 @@
                     <li><strong>Outdoor Space:</strong> Large courtyard wrap-around patio setup ideal for family breakfasts.</li>
                 </ul>
                 <div class="button-group" style="margin-top: 15px;">
-                    <a href="amplades-villa.html" class="web-link">Check Available Dates</a>
+                    <a href="amplades-villas.html" class="web-link">Check Available Dates</a>
                 </div>
             </section>
 
@@ -134,7 +141,42 @@
         </p>
         <p class="copyright">&copy; 2026 Crete GR Travel. All rights reserved.</p>
     </footer>
+<!-- NEW: Pop-Up Light-box Modal Overlay Container -->
+    <div id="galleryModal" class="modal-overlay" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalTargetImg" alt="Enlarged Sight View">
+    </div>
 
+           <!-- Simple translucent click-to-enlarge engine (Close via Photo Click) -->
+    <script>
+        document.querySelectorAll('.gallery-image, .restaurant-img').forEach(img => {
+            img.addEventListener('click', function() {
+                // If the picture is already enlarged, close it right away
+                if (this.classList.contains('simple-zoom-active')) {
+                    this.classList.remove('simple-zoom-active');
+                    let backdrop = document.querySelector('.zoom-backdrop-overlay');
+                    if (backdrop) backdrop.remove();
+                    return;
+                }
+
+                // Otherwise, enlarge the picture and generate the translucent backdrop film
+                let existingBackdrop = document.querySelector('.zoom-backdrop-overlay');
+                if (!existingBackdrop) {
+                    let backdrop = document.createElement('div');
+                    backdrop.className = 'zoom-backdrop-overlay';
+                    document.body.appendChild(backdrop);
+                    
+                    this.classList.add('simple-zoom-active');
+                    
+                    // Fallback: Clicking the background will also safely close it
+                    backdrop.addEventListener('click', () => {
+                        this.classList.remove('simple-zoom-active');
+                        backdrop.remove();
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 

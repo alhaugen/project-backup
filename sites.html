@@ -158,33 +158,41 @@
         <img class="modal-content" id="modalTargetImg" alt="Enlarged Sight View">
     </div>
 
-    <!-- NEW: Interactive Image Clicking Controller Script -->
+           <!-- Simple translucent click-to-enlarge engine (Close via Photo Click) -->
     <script>
-        const images = document.querySelectorAll('.gallery-image');
-        const modal = document.getElementById('galleryModal');
-        const modalImg = document.getElementById('modalTargetImg');
-
-        images.forEach(img => {
-            img.style.cursor = 'pointer'; // Changes cursor arrow to pointing hand
+        document.querySelectorAll('.gallery-image, .restaurant-img').forEach(img => {
             img.addEventListener('click', function() {
-                modal.style.display = 'flex'; // Opens dark overlay backdrop
-                modalImg.src = this.src; // Clones picture asset path
+                // If the picture is already enlarged, close it right away
+                if (this.classList.contains('simple-zoom-active')) {
+                    this.classList.remove('simple-zoom-active');
+                    let backdrop = document.querySelector('.zoom-backdrop-overlay');
+                    if (backdrop) backdrop.remove();
+                    return;
+                }
+
+                // Otherwise, enlarge the picture and generate the translucent backdrop film
+                let existingBackdrop = document.querySelector('.zoom-backdrop-overlay');
+                if (!existingBackdrop) {
+                    let backdrop = document.createElement('div');
+                    backdrop.className = 'zoom-backdrop-overlay';
+                    document.body.appendChild(backdrop);
+                    
+                    this.classList.add('simple-zoom-active');
+                    
+                    // Fallback: Clicking the background will also safely close it
+                    backdrop.addEventListener('click', () => {
+                        this.classList.remove('simple-zoom-active');
+                        backdrop.remove();
+                    });
+                }
             });
-        });
-
-        function closeModal() {
-            modal.style.display = 'none'; // Dismisses backdrop overlay view
-        }
-
-        // Keyboard Safety: Hitting 'Escape' dismisses the large view window instantly
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
         });
     </script>
 
 </body>
 </html>
+
+
+
 
 

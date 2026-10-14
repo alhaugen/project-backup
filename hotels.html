@@ -6,6 +6,53 @@
     <title>Where to Stay - Crete GR Travel</title>
     <!-- Links to your master CSS file for styling parity -->
     <link rel="stylesheet" href="style.css">
+/* Lightbox backdrop overlay */
+<style>
+        .image-lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(3, 4, 94, 0.85); /* Deep blue dimmed background */
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .image-lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox-expanded-img {
+            max-width: 85%;
+            max-height: 80%;
+            border-radius: 12px;
+            border: 5px solid #ffffff;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .image-lightbox-overlay.active .lightbox-expanded-img {
+            transform: scale(1);
+        }
+        .lightbox-close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 800;
+            cursor: pointer;
+            user-select: none;
+        }
+        .lightbox-close-btn:hover {
+            color: #00ddff;
+        }
+</style>
 </head>
 <body>
 

@@ -9,11 +9,18 @@
 </head>
 <body>
 
-    <!-- Header Area (Globally centered across the screen) -->
-    <header>
-        <h1>Amplades Villas</h1>
-        <p class="tagline">Check live dates and lock in your authentic Cretan retreat</p>
-    </header>
+        <!-- Header Area (Symmetrically Grid-Balanced for True Center Title) -->
+        <header class="global-site-header">
+            <img src="og-image.png" alt="Crete GR Travel Logo" class="header-logo">
+            
+            <div class="header-text-group">
+                <h1>Crete GR Travel</h1>
+                <p class="tagline">Your Ultimate Guide to Greece's Largest Island</p>
+            </div>
+            
+            <!-- Hidden balancing block that guarantees dead-centering -->
+            <div class="header-spacer"></div>
+        </header>
 
     <!-- 3-Column Content Layout Wrapper -->
     <div class="page-layout-wrapper">
@@ -41,11 +48,11 @@
                     <!-- Date Inputs Row -->
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="checkin">🛫 Check-In Date:</label>
+                            <label for="checkin">🛫 <strong>Check-In Date:</strong></label>
                             <input type="date" id="checkin" name="checkin" required>
                         </div>
                         <div class="form-group">
-                            <label for="checkout">🛬 Check-Out Date:</label>
+                            <label for="checkout">🛬 <strong>Check-Out Date:</strong></label>
                             <input type="date" id="checkout" name="checkout" required>
                         </div>
                     </div>
@@ -53,7 +60,7 @@
                     <!-- Villa Selector Row -->
                     <div class="form-row" style="margin-top: 15px;">
                         <div class="form-group">
-                            <label for="villa-type">🏡 Choose Your Villa:</label>
+                            <label for="villa-type">🏡 <strong>Choose Your Villa:</strong></label>
                             <select id="villa-type" name="villa_type" required>
                                 <option value="one-bedroom" selected>Amplades One-Bedroom Villa (Max 2 Adults)</option>
                                 <option value="two-bedroom">Amplades Two-Bedroom Villa (Max 2 Adults, 2 Children)</option>
@@ -64,7 +71,7 @@
                     <!-- Guest Rows -->
                     <div class="form-row" style="margin-top: 15px;">
                         <div class="form-group">
-                            <label for="adults">🧑 Adults:</label>
+                            <label for="adults">🧑 <strong>Adults:</strong></label>
                             <select id="adults" name="adults">
                                 <option value="1">1 Adult</option>
                                 <option value="2" selected>2 Adults</option>
@@ -73,7 +80,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="children">🧒 Children:</label>
+                            <label for="children">🧒 <strong>Children:</strong></label>
                             <select id="children" name="children">
                                 <option value="0" selected>0 Children</option>
                                 <option value="1">1 Child</option>
@@ -88,7 +95,7 @@
                 </form>
 
                 <!-- Dynamic Local Results Status Notification Box -->
-                <div id="availability-result" style="display: none; margin-top: 20px; padding: 20px; border-radius: 12px; font-weight: 700; line-height: 1.6;"></div>
+                <div id="availability-result" style="display: none; margin-top: 10px; padding: 20px; border-radius: 12px; font-weight: 700; line-height: 1.6;"></div>
 
                 <!-- Internal layout redirect shortcuts -->
                 <p style="margin-top: 20px;">

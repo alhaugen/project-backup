@@ -9,11 +9,18 @@
 </head>
 <body>
 
-    <!-- Header Area (Globally centered across the screen width) -->
-    <header>
-        <h1>Villa Gina Luxury Maisonette Gallery</h1>
-        <p class="tagline">A photographic tour through your next premium Cretan getaway</p>
-    </header>
+        <!-- Header Area (Symmetrically Grid-Balanced for True Center Title) -->
+        <header class="global-site-header">
+            <img src="og-image.png" alt="Crete GR Travel Logo" class="header-logo">
+            
+            <div class="header-text-group">
+                <h1>Crete GR Travel</h1>
+                <p class="tagline">Your Ultimate Guide to Greece's Largest Island</p>
+            </div>
+            
+            <!-- Hidden balancing block that guarantees dead-centering -->
+            <div class="header-spacer"></div>
+        </header>
 
     <!-- 3-Column Content Layout Wrapper -->
     <div class="page-layout-wrapper">
@@ -67,7 +74,7 @@
             <div class="offer-card">
                 <h4>🌴The Ultimate Greek Experience Deal</h4>
                 <p>Save 10% or more on stays booked by Jan 7!</p>
-                <a href="villa-gina.html" class="offer-link">Greek Villa Getaway</a>
+                <a href="amplades-villas.html" class="offer-link">Greek Villa Getaway</a>
             </div>
 
             <div class="offer-card">
@@ -92,38 +99,40 @@
         </p>
         <p class="copyright">&copy; 2026 Crete GR Travel. All rights reserved.</p>
     </footer>
-    <!-- NEW: The Pop-Up Light-box Modal Container -->
+    <!-- NEW: Pop-Up Light-box Modal Overlay Container -->
     <div id="galleryModal" class="modal-overlay" onclick="closeModal()">
         <span class="modal-close">&times;</span>
-        <img class="modal-content" id="modalTargetImg" alt="Enlarged View">
+        <img class="modal-content" id="modalTargetImg" alt="Enlarged Sight View">
     </div>
 
-    <!-- NEW: Interactive Light-box Image Clicking Controller Script -->
+           <!-- Simple translucent click-to-enlarge engine (Close via Photo Click) -->
     <script>
-        // Find all gallery images on the page
-        const images = document.querySelectorAll('.gallery-image');
-        const modal = document.getElementById('galleryModal');
-        const modalImg = document.getElementById('modalTargetImg');
-
-        // Loop through each photo and attach a click event listener
-        images.forEach(img => {
-            img.style.cursor = 'pointer'; // Changes mouse arrow to a pointing finger
+        document.querySelectorAll('.gallery-image, .restaurant-img').forEach(img => {
             img.addEventListener('click', function() {
-                modal.style.display = 'flex'; // Reveals the hidden dark overlay layer
-                modalImg.src = this.src; // Grabs the clicked photo's source path
+                // If the picture is already enlarged, close it right away
+                if (this.classList.contains('simple-zoom-active')) {
+                    this.classList.remove('simple-zoom-active');
+                    let backdrop = document.querySelector('.zoom-backdrop-overlay');
+                    if (backdrop) backdrop.remove();
+                    return;
+                }
+
+                // Otherwise, enlarge the picture and generate the translucent backdrop film
+                let existingBackdrop = document.querySelector('.zoom-backdrop-overlay');
+                if (!existingBackdrop) {
+                    let backdrop = document.createElement('div');
+                    backdrop.className = 'zoom-backdrop-overlay';
+                    document.body.appendChild(backdrop);
+                    
+                    this.classList.add('simple-zoom-active');
+                    
+                    // Fallback: Clicking the background will also safely close it
+                    backdrop.addEventListener('click', () => {
+                        this.classList.remove('simple-zoom-active');
+                        backdrop.remove();
+                    });
+                }
             });
-        });
-
-        // Function to close the modal when clicking the dark background or X
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        // Safeguard: Allow the user to close it by hitting the 'Escape' key on their keyboard
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
         });
     </script>
 
