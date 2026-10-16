@@ -457,5 +457,19 @@ footer .copyright {
         width: 100%;
     }
 }
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column; /* This forces the span to drop underneath */
+  align-items: center;    /* Centers the text if your header is centered */
+}
+
+.tagline {
+  font-size: 1.2rem;       /* Makes the tagline smaller than the main title */
+  font-weight: normal;     /* Softens the text appearance */
+  margin-top: 0.5rem;      /* Adds a little breathing room below the title */
+  color: #555555;          /* Optional: dims the color slightly for hierarchy */
+}
 
 
