@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="description" content="Uncover the best hidden gems and local favorites in Crete. Get expert travel recommendations to make your Greek island adventure truly unforgettable.">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Best Places to See - Crete GR Travel</title>
@@ -11,7 +13,7 @@
 
        <!-- Header Area (Symmetrically Grid-Balanced for True Center Title) -->
         <header class="global-site-header">
-            <img src="og-image.png" alt="Crete GR Travel Logo" class="header-logo">
+            <img src="og-image.webp" alt="Crete GR Travel Logo" class="header-logo">
             
             <div class="header-text-group">
                 <h1>
@@ -49,7 +51,7 @@
 <h3>🫒 Terra Creta Olive Oil Tours</h3>
 
 <div class="image-wrapper" style="margin-bottom: 15px;">
-    <img src="oliveoil.jpg" alt="Terra Creta estate olive oil bottles and tasting tour" class="gallery-image">
+    <img src="oliveoil.webp" alt="Unique olive oil tasting tour" class="gallery-image">
 </div>
 
 <p>
@@ -72,7 +74,7 @@
 <h3>🐎 Finikia Horse Riding</h3>
 
 <div class="image-wrapper" style="margin-bottom: 15px;">
-    <img src="finikia.jpg" alt="Finikia horse riding experience" class="gallery-image">
+    <img src="finikia.webp" alt="Horseback riding on the beach in Crete" class="gallery-image">
 </div>
 
 <p>
@@ -93,7 +95,7 @@
 <h3>🍷 Manousakis Wines</h3>
 
 <div class="image-wrapper" style="margin-bottom: 15px;">
-    <img src="winery.jpg" alt="Manousakis Wine tasting experience" class="gallery-image">
+    <img src="winery.webp" alt="Experience a unique wine tasting in the heart of the vineyard" class="gallery-image">
 </div>
 
 <p>
@@ -129,7 +131,7 @@
                 <h4>🚗 Car Rental Deals</h4>
                 <p>Explore Crete freely. Save up to 20% on weekly rentals!</p>
                 <a href="https://kafetzakis.gr" target="_blank" class="sidebar-image-link">
-                    <img src="car-rental.jpg" alt="Car Rental Discount Deal" class="sidebar-deal-image">
+                    <img src="car-rental.webp" alt="Car Rental Discount Deal" class="sidebar-deal-image">
                 </a>
             </div>
         </aside>
@@ -148,37 +150,36 @@
         <p class="copyright">&copy; 2026 Crete GR Travel. All rights reserved.</p>
     </footer>
 
-    <!-- NEW: Pop-Up Light-box Modal Overlay Container -->
-    <div id="galleryModal" class="modal-overlay" onclick="closeModal()">
-        <span class="modal-close">&times;</span>
-        <img class="modal-content" id="modalTargetImg" alt="Enlarged Sight View">
-    </div>
+    <!-- Interactive Lightbox Modal Structure -->
+<div id="custom-lightbox" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); align-items: center; justify-content: center; cursor: pointer;">
+    <img id="lightbox-img" src="" alt="Enlarged view" style="max-width: 90%; max-height: 90%; border: 3px solid #fff; border-radius: 4px; box-shadow: 0 0 20px rgba(0,0,0,0.5); object-fit: contain;">
+</div>
 
-    <!-- NEW: Interactive Image Clicking Controller Script -->
-    <script>
-        const images = document.querySelectorAll('.gallery-image');
-        const modal = document.getElementById('galleryModal');
-        const modalImg = document.getElementById('modalTargetImg');
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const lightbox = document.getElementById("custom-lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const galleryImages = document.querySelectorAll(".image-wrapper img, .info-section img");
 
-        images.forEach(img => {
-            img.style.cursor = 'pointer'; // Changes cursor arrow to pointing hand
-            img.addEventListener('click', function() {
-                modal.style.display = 'flex'; // Opens dark overlay backdrop
-                modalImg.src = this.src; // Clones picture asset path
-            });
+    // Open lightbox when a gallery image is clicked
+    galleryImages.forEach(img => {
+        // Change cursor to show it's clickable
+        img.style.cursor = "zoom-in";
+        
+        img.addEventListener("click", () => {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.style.display = "flex";
         });
+    });
 
-        function closeModal() {
-            modal.style.display = 'none'; // Dismisses backdrop overlay view
-        }
+    // Close lightbox when clicking anywhere on the dark background
+    lightbox.addEventListener("click", () => {
+        lightbox.style.display = "none";
+    });
+});
+</script>
 
-        // Keyboard Safety: Hitting 'Escape' dismisses the large view window instantly
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-    </script>
 
 </body>
 </html>
