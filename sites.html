@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta name="description" content="Explore the best historic sites and beaches in Crete. From the ancient Palace of Knossos to pink sand beaches, discover your next Cretan adventure here.">
+<link rel="canonical" href="https://cretegrtravel.com" />
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,21 +12,20 @@
 </head>
 <body>
 
-            <!-- Header Area (Symmetrically Grid-Balanced for True Center Title) -->
-        <header class="global-site-header">
-            <img src="og-image.webp" alt="Crete GR Travel Logo" class="header-logo">
-            
-            <div class="header-text-group">
-                <h1>
-                    Crete GR Travel
-                    <span class="tagline">Your Ultimate Guide to Greece's Largest Island</span>
-                </h1>
-            </div>
-            
-            <!-- Hidden balancing block that guarantees dead-centering -->
-            <div class="header-spacer"></div>
-        </header>
-
+    <!-- Header Area (Symmetrically Grid-Balanced for True Center Title) -->
+    <header class="global-site-header">
+        <img src="og-image.webp" alt="Crete GR Travel Logo" class="header-logo">
+        
+        <div class="header-text-group">
+            <h1>
+                Crete GR Travel
+                <span class="tagline">Your Ultimate Guide to Greece's Largest Island</span>
+            </h1>
+        </div>
+        
+        <!-- Hidden balancing block that guarantees dead-centering -->
+        <div class="header-spacer"></div>
+    </header>
 
     <!-- 3-Column Content Layout Wrapper -->
     <div class="page-layout-wrapper">
@@ -129,72 +129,36 @@
             <div class="offer-card">
                 <h4>🌴The Ultimate Greek Experience Deal</h4>
                 <p>Save 10% or more on stays booked by Jan 7!</p>
-                <!-- Repointed link parameters to the active Villa Gina tracker -->
                 <a href="villa-gina.html" class="offer-link">Greek Villa Getaway</a>
             </div>
 
             <div class="offer-card">
                 <h4>🚗 Car Rental Deals</h4>
                 <p>Explore Crete freely. Save up to 20% on weekly rentals!</p>
-                <a href="https://kafetzakis.gr" target="_blank" class="sidebar-image-link">
-                    <img src="car-rental.webp" alt="Car Rental Discount Deal" class="sidebar-deal-image">
+                <a href="https://kafetzakis.gr" target="_blank" class="sidebar-image-link" rel="noopener" title="Book Car Rental via Kafetzakis">
+                    <img src="car-rental.webp" alt="Affordable Car Rentals in Crete - Car Hire Discount Deal" class="sidebar-deal-image">
                 </a>
             </div>
         </aside>
         
     </div> <!-- End of Layout Wrapper -->
 
-    <!-- Footer Area (Centered globally across the screen width) -->
+    <!-- FIXED & REPAIRED: Clean footer structures with closed brackets and explicit string elements -->
     <footer>
-        <h2> Contact Us</h2>
+        <h2>Contact Us</h2>
         <p>Planning your dream vacation to Crete? Reach out to our destination experts.</p>
         <p>
             <strong>Email:</strong> 
             <a href="mailto:info@cretegrtravel.com" class="footer-email-link">info@cretegrtravel.com</a> 
+
             | <strong>Phone:</strong> +30 697 8938200 Within Europe | +1 608-751-6275 Outside Europe
         </p>
         <p class="copyright">&copy; 2026 Crete GR Travel. All rights reserved.</p>
     </footer>
 
-    <!-- NEW: Pop-Up Light-box Modal Overlay Container -->
-    <div id="galleryModal" class="modal-overlay" onclick="closeModal()">
-        <span class="modal-close">&times;</span>
-        <img class="modal-content" id="modalTargetImg" alt="Enlarged Sight View">
-    </div>
-
-           <!-- Simple translucent click-to-enlarge engine (Close via Photo Click) -->
-    <script>
-        document.querySelectorAll('.gallery-image, .restaurant-img').forEach(img => {
-            img.addEventListener('click', function() {
-                // If the picture is already enlarged, close it right away
-                if (this.classList.contains('simple-zoom-active')) {
-                    this.classList.remove('simple-zoom-active');
-                    let backdrop = document.querySelector('.zoom-backdrop-overlay');
-                    if (backdrop) backdrop.remove();
-                    return;
-                }
-
-                // Otherwise, enlarge the picture and generate the translucent backdrop film
-                let existingBackdrop = document.querySelector('.zoom-backdrop-overlay');
-                if (!existingBackdrop) {
-                    let backdrop = document.createElement('div');
-                    backdrop.className = 'zoom-backdrop-overlay';
-                    document.body.appendChild(backdrop);
-                    
-                    this.classList.add('simple-zoom-active');
-                    
-                    // Fallback: Clicking the background will also safely close it
-                    backdrop.addEventListener('click', () => {
-                        this.classList.remove('simple-zoom-active');
-                        backdrop.remove();
-                    });
-                }
-            });
-        });
-    </script>
-
 </body>
 </html>
+
 
 
 

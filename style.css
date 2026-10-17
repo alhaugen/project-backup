@@ -6,24 +6,22 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* 
-   1. Hard-lock the body to the height of the screen 
-   and hide global window overflow to completely eliminate screen scrolling.
-*/
+/* FIXED: Keeps window locked but forces children to calculate space relative to each other */
 body {
     background-image: url('ElafonisiBeach.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    height: 100vh; /* Locked exactly to screen height */
+    height: 100vh; 
     max-height: 100vh;
-    overflow: hidden; /* Disables outer browser scrollbars */
+    overflow: hidden; 
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Vertical stack structure */
     margin: 0;
     padding: 0; 
 }
+
 
 /* Header Elements (Symmetrically Balanced Layout Rules) */
 .global-site-header {
@@ -85,19 +83,16 @@ body {
     text-transform: uppercase; 
 }
 
-/* 
-   2. Three-Column Content Layout Wrapper 
-   Holds Left Sidebar (260px) | Main Content (1fr) | Right Sidebar (260px)
-*/
+/* FIXED: Forces the grid columns to stop expanding infinitely and respect bottom elements */
 .page-layout-wrapper {
     display: grid;
     grid-template-columns: 260px 1fr 260px; 
     gap: 40px; 
     width: 100%;
     max-width: 100%; 
-    flex: 1; /* Automatically expands vertically to fill all middle space */
-    min-height: 0; /* Allows child items to accurately calculate screen bounds */
-    overflow: hidden; /* Keeps internal components safely contained */
+    flex: 1 1 0%; /* Shorthand that allows the grid area to shrink and grow perfectly within view */
+    min-height: 0; 
+    overflow: hidden; 
 }
 
 /* The Left Navigation Sidebar */
@@ -330,11 +325,14 @@ footer h2 {
     margin-bottom: 4px;
 }
 
-footer p {
-    color: #03045e;
-    font-size: 0.95rem;
-    font-weight: 600;
+/* FIXED: Added a more specific selector to completely override the main body's global burgundy style */
+footer p, 
+footer .copyright {
+    color: #03045e !important;   /* Guarantees the deep navy blue displays instead of burgundy */
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;  /* Softens the text from heavy bold 700 to clean semibold 600 */
     margin-bottom: 4px;
+    line-height: 1.4;
 }
 
 footer a {
@@ -347,11 +345,14 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* FIXED: Refined copyright rule to scale down slightly for text balance */
 footer .copyright {
-    font-size: 0.85rem;
-    color: #555555;
+    font-size: 0.85rem !important;
+    color: #555555 !important;    /* Keeps the legal footer neutral and clean */
     margin-top: 2px;
+    margin-bottom: 0;
 }
+
 
 /* 1. The Translucent Full-Screen Backdrop Layer */
 .zoom-backdrop-overlay {
@@ -471,5 +472,93 @@ h1 {
   margin-top: 0.5rem;      /* Adds a little breathing room below the title */
   color: #555555;          /* Optional: dims the color slightly for hierarchy */
 }
+.share-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.share-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+.fb { background-color: #1877f2; }
+.x-tw { background-color: #000000; }
+.wa { background-color: #25d366; }
+.modern-share-button {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+/* ==========================================================================
+   HOMEPAGE-ONLY SCREEN COMPRESSION OVERRIDES (BALANCED MIDDLE GROUND)
+   ========================================================================== */
+
+/* 1. Header & Logo: Expanded back up to a medium-large scale */
+.home-layout .header-logo {
+    width: 290px !important;       
+    height: 170px !important;
+    min-width: 240px !important;   
+    flex-shrink: 0 !important;
+    object-fit: contain;
+}
+
+.home-layout .header-spacer {
+    width: 240px !important;       
+    height: 170px !important;
+    flex-shrink: 0 !important;
+}
+
+/* 2. Main Title: Scaled back up to look bold and majestic without running out of room */
+.home-layout .global-site-header h1 {
+    font-size: 4.0rem !important; 
+    letter-spacing: 1.5px !important;
+    line-height: 0.95 !important;
+}
+
+/* 3. Section Spacing: Increased from 12px to 24px to give your text breathing room */
+.home-layout .info-section {
+    margin-bottom: 10px !important;
+}
+
+/* 4. Typography: Restored larger heading and paragraph text sizes */
+.home-layout .info-section h2 {
+    font-size: 2.2rem !important;
+    margin-bottom: 4px !important;
+}
+
+.home-layout .info-section p {
+    font-size: 1.2rem !important;
+    line-height: 1.5 !important; 
+}
+
+/* 5. Sidebars: Rebalanced padding for a less cramped look */
+.home-layout .sidebar-nav, 
+.home-layout .right-sidebar {
+    padding: 22px 18px !important;
+    gap: 12px !important;
+}
+
+/* 6. Share Button: Restored to a slightly punchier, more visible format */
+.home-layout .modern-share-button {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 
 

@@ -65,6 +65,8 @@
 </head>
 
 <body>
+<!-- UPDATE THIS LINE IN YOUR INDEX.HTML ONLY -->
+<body class="home-layout">
 
     <!-- Main Content Container -->
     <div class="glass-container">
@@ -101,7 +103,7 @@
             <!-- Main Content Sections in the Center Column -->
 <main>
     <!-- FIX: Added introductory paragraph containing all missing Title and H1 keywords naturally -->
-    <section class="info-section introduction">
+    <section class="info-section introduction"> 
         <p>Welcome to <strong>Crete GR Travel</strong>, your <strong>ultimate</strong> travel <strong>guide</strong> packed with expert <strong>tips</strong> for exploring Greece's <strong>largest</strong> island. Whether you are looking for ancient history, luxury beach resorts, or hidden villages, we have you covered.</p>
     </section>
 
@@ -125,6 +127,31 @@
         <h2>Expert Crete Recommendations & Hidden Gems</h2>
         <p>Discover the best hidden gems and local favorites that will make your Cretan adventure truly unforgettable.</p>
     </section>
+    <!-- Native Social Share Button -->
+<section class="info-section share-container">
+    <button id="shareBtn" class="modern-share-button">📢 Share This Guide</button>
+</section>
+
+<script>
+document.getElementById('shareBtn').addEventListener('click', async () => {
+    if (navigator.share) {
+        try {
+            await navigator.share({
+                title: "Crete GR Travel | Ultimate Guide",
+                text: "Check out this amazing local guide and tips for visiting Crete!",
+                url: window.location.href
+            });
+        } catch (err) {
+            console.log("Share cancelled or failed", err);
+        }
+    } else {
+        // Fallback copy-to-clipboard if browser doesn't support native sharing
+        navigator.clipboard.writeText(window.location.href);
+        alert("Link copied to clipboard! Share it with your friends.");
+    }
+});
+</script>
+
 </main>
 
 

@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
     <meta name="description" content="Find the best hotels and luxury villas in Crete. Explore beachside resorts in Elounda, boutique stays in Chania, and exclusive monthly accommodation deals.">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Where to Stay - Crete GR Travel</title>
+    <link rel="canonical" href="https://cretegrtravel.com" />
+
     <!-- Links to your master CSS file for styling parity -->
     <link rel="stylesheet" href="style.css">
-/* Lightbox backdrop overlay */
-<style>
+
+    <!-- Lightbox backdrop overlay style adjustments -->
+    <style>
         .image-lightbox-overlay {
             position: fixed;
             top: 0;
@@ -54,24 +56,25 @@
         .lightbox-close-btn:hover {
             color: #00ddff;
         }
-</style>
+    </style>
 </head>
 <body>
 
-       <!-- Header Area (Symmetrically Grid-Balanced for True Center Title) -->
-        <header class="global-site-header">
-            <img src="og-image.webp" alt="Crete GR Travel Logo" class="header-logo">
-            
-            <<div class="header-text-group">
-                <h1>
-                    Crete GR Travel
-                    <span class="tagline">Your Ultimate Guide to Greece's Largest Island</span>
-                </h1>
-            </div>
-            
-            <!-- Hidden balancing block that guarantees dead-centering -->
-            <div class="header-spacer"></div>
-        </header>
+    <!-- Header Area (Symmetrically Grid-Balanced for True Center Title) -->
+    <header class="global-site-header">
+        <img src="og-image.webp" alt="Crete GR Travel Logo" class="header-logo">
+        
+        <!-- FIXED: Removed the duplicate structural bracket from this container element block -->
+        <div class="header-text-group">
+            <h1>
+                Crete GR Travel
+                <span class="tagline">Your Ultimate Guide to Greece's Largest Island</span>
+            </h1>
+        </div>
+        
+        <!-- Hidden balancing block that guarantees dead-centering -->
+        <div class="header-spacer"></div>
+    </header>
 
     <!-- 3-Column Content Layout Wrapper -->
     <div class="page-layout-wrapper">
@@ -89,38 +92,34 @@
         <!-- Main Content Area: Hotels Directory (Center Track) -->
         <main>
             
+            <!-- Hotel Title Section -->
+            <section class="info-section">
+                <h2>Best Crete Hotels, Luxury Villas & Accommodations</h2>
+            </section>
+            
             <!-- Hotel Section 1 -->
-
-<section class="info-section">
-    <h2> Best Crete Hotels, Luxury Villas & Accommodations</h2>
-    </section>
-    <section class="info-section">
-                <h2> Amplades Villas</h2>
-                <p>Three traditional, lovingly renovated stone villas in the village of Gálipe, Crete, designed to blend historic elements like century-old grain silos with modern comfort for a tranquil island getaway</p>
+            <section class="info-section">
+                <h2>Amplades Villas</h2>
+                <p>Three traditional, lovingly renovated stone villas in the village of Gálipe, Crete, designed to blend historic elements like century-old grain silos with modern comfort for a tranquil island getaway.</p>
                 <div class="button-group">
-                    <!-- FIXED: Added target="_blank" so external hotel bookings open in a new tab -->
                     <a href="amplades-villas.html" target="_blank" class="web-link">Book Amplades Villas</a>
                 </div>
             </section>
 
             <!-- Hotel Section 2 -->
-
-<section class="info-section">
-                <h2> Villa Gina Luxury Maisonette</h2>
+            <section class="info-section">
+                <h2>Villa Gina Luxury Maisonette</h2>
                 <p>Family-friendly countryside retreat in the rural village of Galipe, Crete, featuring a private pool and scenic views of surrounding vineyards and olive groves just a short drive from Heraklion's beaches.</p>
                 <div class="button-group">
-                    <!-- FIXED: Added target="_blank" so external hotel bookings open in a new tab -->
                     <a href="villa-gina.html" target="_blank" class="web-link">Book Villa Gina Luxury Maisonette</a>
                 </div>
             </section>
 
             <!-- Hotel Section 3 -->
-
-<section class="info-section">
-                <h2> Eri Beach Hotel</h2>
+            <section class="info-section">
+                <h2>Eri Beach Hotel</h2>
                 <p>This 4-star hotel offers stunning sea views, modern amenities, and a prime location in the beautiful city of Hersonissos.</p>
                 <div class="button-group">
-                    <!-- FIXED: Added target="_blank" so external hotel bookings open in a new tab -->
                     <a href="https://eribeach.gr/en" target="_blank" class="web-link">Book Eri Beach Hotel</a>
                 </div>
             </section>
@@ -150,14 +149,14 @@
 
     <!-- Footer Area (Globally centered across the screen) -->
     <footer>
-        <h2> Contact Us</h2>
+        <h2>Contact Us</h2>
         <p>Planning your dream vacation to Crete? Reach out to our destination experts.</p>
         <p>
             <strong>Email:</strong> 
             <a href="mailto:info@cretegrtravel.com" class="footer-email-link">info@cretegrtravel.com</a> 
+
             | <strong>Phone:</strong> +30 697 8938200 Within Europe | +1 608-751-6275 Outside Europe
         </p>
-
         <p class="copyright">&copy; 2026 Crete GR Travel. All rights reserved.</p>
     </footer>
 
